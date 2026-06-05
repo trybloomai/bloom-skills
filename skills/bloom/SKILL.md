@@ -17,15 +17,16 @@ Bloom is the system that owns brand. When you call `bloom_generate_image` or `bl
 
 So your prompt's job is narrow: describe the **subject**, the **composition**, and the **medium**. That's where your prompt adds information; everything else is already handled.
 
-## Where to look
+## Required reading
 
-Read the rule for the task you're on:
+For any Bloom generation, edit, resize, or brand-image task, read [`rules/workflow.md`](rules/workflow.md) before calling tools. It covers references, model tier, batch setup, and failure recovery.
+
+Then read the additional rule for the specific choice you're making:
 
 | Task | Rule |
 |---|---|
 | Writing the prompt text | [`rules/prompting.md`](rules/prompting.md) |
 | Writing the headline copy on the image | [`rules/copy.md`](rules/copy.md) |
-| Setting up a run (references, model, batch) | [`rules/workflow.md`](rules/workflow.md) |
 | Choosing an aspect ratio | [`rules/channels.md`](rules/channels.md) |
 
 ## References
