@@ -8,7 +8,7 @@
 
 **Teach your agent to create on-brand images with Bloom.**
 
-[![skills.sh](https://img.shields.io/badge/skills.sh-bloom-7C3AED)](https://skills.sh/trybloomai/bloom-skills)
+[![skills.sh](https://img.shields.io/badge/skills.sh-bloom-000000?logo=vercel&logoColor=white)](https://skills.sh/trybloomai/bloom-skills)
 &nbsp;
 [![MCP](https://img.shields.io/badge/MCP-trybloom.ai-7C3AED)](https://trybloom.ai/mcp)
 &nbsp;
