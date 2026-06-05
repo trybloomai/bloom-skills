@@ -164,10 +164,16 @@ zip -r ../../dist/bloom.skill.zip SKILL.md rules
 
 ## Check That It Installed
 
-List available skills:
+List project skills from the project directory:
 
 ```bash
 npx skills list
+```
+
+List global skills:
+
+```bash
+npx skills list -g
 ```
 
 Inspect this repository without installing:
@@ -180,16 +186,34 @@ Expected result: one skill named `bloom`.
 
 ## Update Or Remove
 
-Update installed skills:
+Update a project install:
 
 ```bash
 npx skills update bloom
 ```
 
-Remove the skill:
+Update a global install:
+
+```bash
+npx skills update -g bloom
+```
+
+Remove a project install:
 
 ```bash
 npx skills remove bloom
+```
+
+Remove a global install:
+
+```bash
+npx skills remove -g bloom
+```
+
+Remove a global install for one agent only:
+
+```bash
+npx skills remove -g bloom --agent codex
 ```
 
 ## Example Prompts
