@@ -1,0 +1,19 @@
+docs/quickstart.md
+  s_3b04ba586c9dad::t_abbdfeccccfe24 167,173-178,189,195-201,207-216
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "8df2851d994fbd6666c6f01aec9e87618d2c05c9",
+  "prompts": {},
+  "sessions": {
+    "s_3b04ba586c9dad": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e99ee-23f1-7f20-8675-af7a5f08fdc9",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Tomas Ward <tomas@familiaward.com.ar>"
+    }
+  }
+}
