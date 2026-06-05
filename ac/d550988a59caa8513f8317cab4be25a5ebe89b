@@ -1,0 +1,19 @@
+skills/bloom/SKILL.md
+  s_3b04ba586c9dad::t_a6d69ae33d3f33 20,22-24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "acd550988a59caa8513f8317cab4be25a5ebe89b",
+  "prompts": {},
+  "sessions": {
+    "s_3b04ba586c9dad": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e99ee-23f1-7f20-8675-af7a5f08fdc9",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Tomas Ward <tomas@familiaward.com.ar>"
+    }
+  }
+}
