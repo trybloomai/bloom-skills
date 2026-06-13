@@ -1,0 +1,24 @@
+README.md
+  s_2c6c9eb8d5dc06::t_b089f5d6b94939 56
+CHANGELOG.md
+  s_2c6c9eb8d5dc06::t_83ff45a33bc91c 1-18
+docs/quickstart.md
+  s_2c6c9eb8d5dc06::t_b6690d9052f4eb 39
+  s_2c6c9eb8d5dc06::t_f7710e510058b3 152,155
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "55e453f23c257e0d94cff3a9e4063180fb02ba1a",
+  "prompts": {},
+  "sessions": {
+    "s_2c6c9eb8d5dc06": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1f03d60e-dcc9-46e7-b728-5036e8061ab6",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Tomas Ward <tomas@familiaward.com.ar>"
+    }
+  }
+}

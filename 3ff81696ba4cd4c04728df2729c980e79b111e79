@@ -1,0 +1,19 @@
+README.md
+  s_31e625d7e464ee::t_9e8888ad6eb2ca 1-2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "3ff81696ba4cd4c04728df2729c980e79b111e79",
+  "prompts": {},
+  "sessions": {
+    "s_31e625d7e464ee": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e9480-a85a-7e02-82d8-dd61a0d83ef2",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Tomas Ward <tomas@familiaward.com.ar>"
+    }
+  }
+}

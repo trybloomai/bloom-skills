@@ -1,0 +1,19 @@
+README.md
+  s_2c6c9eb8d5dc06::t_235af9b16e0804 11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "9703cff8ac1139e8e5d963452133e12db0c3141d",
+  "prompts": {},
+  "sessions": {
+    "s_2c6c9eb8d5dc06": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1f03d60e-dcc9-46e7-b728-5036e8061ab6",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Tomas Ward <tomas@familiaward.com.ar>"
+    }
+  }
+}

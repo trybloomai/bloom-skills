@@ -1,0 +1,21 @@
+skills/bloom/rules/workflow.md
+  s_2c6c9eb8d5dc06::t_d3c4b5ac0e1c6d 26-38
+skills/bloom/SKILL.md
+  s_2c6c9eb8d5dc06::t_57898044c4e4d9 3-4,7-9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "c39189e6513f11d3a18567d312487ff0eaedccaa",
+  "prompts": {},
+  "sessions": {
+    "s_2c6c9eb8d5dc06": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1f03d60e-dcc9-46e7-b728-5036e8061ab6",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Tomas Ward <tomas@familiaward.com.ar>"
+    }
+  }
+}

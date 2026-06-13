@@ -1,0 +1,55 @@
+skills/bloom/SKILL.md
+  s_2c6c9eb8d5dc06::t_77d64d878a0053 16
+  s_2c6c9eb8d5dc06::t_5614dedd628e8c 6
+README.md
+  s_2c6c9eb8d5dc06::t_8b11348eefc18c 60
+  s_2c6c9eb8d5dc06::t_0f18acb8092444 66
+  s_2c6c9eb8d5dc06::t_8834c5b2ba3568 29
+CHANGELOG.md
+  s_2c6c9eb8d5dc06::t_32ef13126ba768 16
+skills/bloom/rules/channels.md
+  s_2c6c9eb8d5dc06::t_f587b5c8eaf02b 19
+  s_2c6c9eb8d5dc06::t_1fcd0c40b5efb3 17
+skills/bloom/rules/prompting.md
+  s_2c6c9eb8d5dc06::t_119f2011c91cad 15
+  s_2c6c9eb8d5dc06::t_1f1e4bb14cf5cf 33
+  s_2c6c9eb8d5dc06::t_ed38e7eb6ac81a 37
+  s_2c6c9eb8d5dc06::t_c86c1cd400b406 49
+  s_2c6c9eb8d5dc06::t_900f0649b9d28b 73
+  s_2c6c9eb8d5dc06::t_3242663055f949 29
+skills/bloom/rules/workflow.md
+  s_2c6c9eb8d5dc06::t_35b7a890a16ce3 35
+  s_2c6c9eb8d5dc06::t_51c96595d67af4 21
+  s_2c6c9eb8d5dc06::t_00a58ff83be278 17
+  s_2c6c9eb8d5dc06::t_9c367cf46d7657 25
+  s_2c6c9eb8d5dc06::t_e63509d202aa5b 27
+  s_2c6c9eb8d5dc06::t_9be0630ba095d4 3
+  s_2c6c9eb8d5dc06::t_1e4c58780b9740 9
+  s_2c6c9eb8d5dc06::t_076e96b7697bff 33
+  s_2c6c9eb8d5dc06::t_9abbdcf480b89d 38
+  s_2c6c9eb8d5dc06::t_edae8384637c11 34
+  s_2c6c9eb8d5dc06::t_4dbedea580c4ea 13
+skills/bloom/rules/copy.md
+  s_2c6c9eb8d5dc06::t_ed34028f2f844d 5
+  s_2c6c9eb8d5dc06::t_232fe1c910a70b 13
+  s_2c6c9eb8d5dc06::t_fbaa2048be5bcd 9
+  s_2c6c9eb8d5dc06::t_67fb898b311d6c 17
+  s_2c6c9eb8d5dc06::t_05d23a968ae959 3
+  s_2c6c9eb8d5dc06::t_7936f73aad55e7 22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "d188af9daf0b447c9b0496255989609a24bcc856",
+  "prompts": {},
+  "sessions": {
+    "s_2c6c9eb8d5dc06": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1f03d60e-dcc9-46e7-b728-5036e8061ab6",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Tomas Ward <tomas@familiaward.com.ar>"
+    }
+  }
+}

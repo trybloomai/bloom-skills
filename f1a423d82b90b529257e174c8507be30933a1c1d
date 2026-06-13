@@ -1,0 +1,23 @@
+README.md
+  s_31e625d7e464ee::t_ab65f0fd0d634f 9-30,36,63
+docs/quickstart.md
+  s_31e625d7e464ee::t_ab65f0fd0d634f 1-206
+.gitignore
+  s_31e625d7e464ee::t_ab65f0fd0d634f 1-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "f1a423d82b90b529257e174c8507be30933a1c1d",
+  "prompts": {},
+  "sessions": {
+    "s_31e625d7e464ee": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e9480-a85a-7e02-82d8-dd61a0d83ef2",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Tomas Ward <tomas@familiaward.com.ar>"
+    }
+  }
+}
