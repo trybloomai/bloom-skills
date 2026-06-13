@@ -8,11 +8,9 @@ So your prompt's job is narrow. Describe the **subject** (what's in the frame), 
 
 ## Minimal beats detailed
 
-Most of the time a short prompt that leans on the brand layer beats a long one. The template shape is enough on its own:
+Most of the time a short prompt that leans on the brand layer beats a long one. Write only what the image actually needs — the subject, the composition, the medium when it matters, and the exact headline if there is one. There's no template to fill in: don't open with "a [brand] post" or name the channel, because the brand layer is applied downstream and a brand/channel preamble just restates it. When there's headline text, give it verbatim (`Headline: "…"`) so the model renders exactly that and nothing extra.
 
-> A [brand] post. Headline: "[copy]."
-
-Start there. Add subject and composition detail only when the concept needs it: a specific scene, a particular layout, an object that has to be in frame. Don't pad the prompt to make it feel complete.
+Add subject and composition detail only when the concept needs it: a specific scene, a particular layout, an object that has to be in frame. Don't pad the prompt to make it feel complete.
 
 ## What to prompt for
 
