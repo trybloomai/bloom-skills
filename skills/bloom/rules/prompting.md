@@ -10,7 +10,7 @@ So your prompt's job is narrow. Describe the **subject** (what's in the frame), 
 
 Most of the time a short prompt that leans on the brand layer beats a long one. The template shape is enough on its own:
 
-> A [brand] post. Headline: "[copy]." Use the brand's full artistic direction.
+> A [brand] post. Headline: "[copy]."
 
 Start there. Add subject and composition detail only when the concept needs it: a specific scene, a particular layout, an object that has to be in frame. Don't pad the prompt to make it feel complete.
 
@@ -26,7 +26,7 @@ Specify medium when you want to nudge toward a particular idiom: "photograph," "
 
 ## References over adjectives
 
-When reference images are attached, say "Match the style of the attached references" rather than re-describing that style in words. The references already carry the look; describing it again in adjectives only gives the model a second, blurrier copy to reconcile against the first. If you want a *specific* look the brand wouldn't reach by default, attach a reference; don't write it out.
+When you want the brand's existing look, attach reference images — don't describe that style in words, and don't add a "match the attached references" instruction either. The image model uses attached references natively, the generation pipeline references them downstream, and the brand is already applied on top; restating it in the prompt is redundant and just gives the model a second, blurrier copy of the instruction. If you want a *specific* look the brand wouldn't reach by default, attach a reference rather than writing it out. The one exception is an exact reproduction: if the user needs a near-copy of a specific reference, say so explicitly.
 
 ## Constraints, not styling
 
