@@ -1,0 +1,27 @@
+skills/bloom/rules/workflow.md
+  s_8c4a897efb2c4b::t_1eadb547aebeb4 5,7
+skills/bloom/rules/references.md
+  s_8c4a897efb2c4b::t_695dad1ed406b0 8
+  s_8c4a897efb2c4b::t_a9e30d0ef9bb54 12
+  s_8c4a897efb2c4b::t_ddc2bc1511313c 1-2
+  s_8c4a897efb2c4b::t_75680f09aebbb7 9-11
+  s_8c4a897efb2c4b::t_724b5db4563dfe 3-7
+skills/bloom/SKILL.md
+  s_8c4a897efb2c4b::t_78d93e7c6a9740 31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "289d55b588003e01f94dbb1c721edf12899b2d8b",
+  "prompts": {},
+  "sessions": {
+    "s_8c4a897efb2c4b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a23193f1-40a9-423e-88e6-7d1aeb0e4005",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Tomas Ward <tomas@familiaward.com.ar>"
+    }
+  }
+}
