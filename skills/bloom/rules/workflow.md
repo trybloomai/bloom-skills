@@ -2,15 +2,9 @@
 
 These are the defaults for a Bloom generation: what to do unless the user asks otherwise. Each one earns its place with a reason; override when the situation calls for it.
 
-## Always pull references before generating
+## Pull references before generating
 
-Uploaded or scraped reference images are the strongest on-brand anchor you have. Generating without them produces generic output even when the brand layer is doing its job. Pull the brand's references first, then generate with them attached.
-
-The mechanics, which tool to call (`bloom_search_user_images`, `bloom_list_images`) and how reference IDs are passed, live in the tool descriptions. Read those; don't guess.
-
-## Pass 2–4 references when the brand has a distinctive style
-
-If the brand has a strong existing visual language (event posters, illustrated graphics, a recurring motif), attach 2 to 4 of its references so the model has enough signal to match it. One reference can be thin; more than four starts to average out the look. This is a judgment call on how distinctive and consistent the brand's existing work is.
+References are the strongest on-brand anchor — pull them first, then generate with them attached; without them the output drifts generic even when the brand layer is doing its job. Choosing them well (search, filter, count, when to attach none) is its own rule: see [`rules/references.md`](references.md). Tool mechanics (`bloom_search_user_images`, `bloom_list_images`, how IDs are passed) live in the tool descriptions.
 
 ## Default to `pro`
 
