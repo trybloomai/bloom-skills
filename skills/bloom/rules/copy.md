@@ -10,11 +10,11 @@ A headline that could sit on any competitor's creative says nothing. Take a posi
 
 ## Use real numbers
 
-Concrete beats vague every time. "$0 to $40k MRR in 6 months" lands where "grow faster" evaporates. Specific figures, dates, and quantities give the reader something to believe; round abstractions ask them to take your word for it. If you have a real number, use it; don't soften it into an adjective.
+Concrete beats vague every time. "$0 to $40k MRR in 6 months" lands where "grow faster" evaporates. Specific figures, dates, and quantities give the reader something to believe; round abstractions ask them to take your word for it. If you have a real number, use it in its concrete form — the figure, the date, the quantity.
 
 ## Match the cultural register
 
-The headline has to sound like it belongs to the audience, not to a marketing department. A dev tool, a Gen-Z fashion brand, and a B2B finance product don't share a voice, and "professional" copy flattened across all three loses each one. Write in the register the audience actually uses: their slang, their references, their level of irony. The brand layer matches the audience visually; the copy has to match it in words.
+Write in the register the audience actually uses — their slang, their references, their level of irony. A dev tool, a Gen-Z fashion brand, and a B2B finance product each have their own voice; the headline should sound like it belongs to that audience. The brand layer matches them visually; the copy matches them in words.
 
 ## Example
 

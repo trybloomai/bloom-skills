@@ -2,15 +2,15 @@
 
 These are the defaults for a Bloom generation: what to do unless the user asks otherwise. Each one earns its place with a reason; override when the situation calls for it.
 
-## Always pull references before generating
+## Check for references before generating
 
-Uploaded or scraped reference images are the strongest on-brand anchor you have. Generating without them produces generic output even when the brand layer is doing its job. Pull the brand's references first, then generate with them attached.
+Uploaded or scraped reference images are the strongest on-brand anchor you have. Search the library at least once before generating; when good matches exist, attach them. Skipping the check risks generic output when strong references were available.
 
 The mechanics, which tool to call (`bloom_search_user_images`, `bloom_list_images`) and how reference IDs are passed, live in the tool descriptions. Read those; don't guess.
 
-## Default to `pro`
+## Use `pro` unless asked otherwise
 
-Use the `pro` model tier for creative output. It's the highest-quality path and the schema default. Don't downgrade to `fast` or `standard` for finals. Reach for the cheaper tiers only when the user explicitly wants speed or volume over quality (rough drafts, throwaway exploration).
+Use the `pro` model tier unless the user asks otherwise — it's the highest-quality path and the schema default. Reach for `fast` or `standard` only when the user explicitly wants speed or volume over quality (rough drafts, throwaway exploration).
 
 ## Don't onboard a brand that already exists
 
