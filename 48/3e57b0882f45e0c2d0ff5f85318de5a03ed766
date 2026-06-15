@@ -1,0 +1,19 @@
+skills/bloom/rules/workflow.md
+  s_e740d3c4414347::t_6be4377a1d6780 33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "483e57b0882f45e0c2d0ff5f85318de5a03ed766",
+  "prompts": {},
+  "sessions": {
+    "s_e740d3c4414347": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ce18db83-5023-4eaf-a95a-5c32e31e7fc3",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Tomas Ward <tomas@familiaward.com.ar>"
+    }
+  }
+}
