@@ -8,10 +8,6 @@ Uploaded or scraped reference images are the strongest on-brand anchor you have.
 
 The mechanics, which tool to call (`bloom_search_user_images`, `bloom_list_images`) and how reference IDs are passed, live in the tool descriptions. Read those; don't guess.
 
-## Pass 2–4 references when the brand has a distinctive style
-
-If the brand has a strong existing visual language (event posters, illustrated graphics, a recurring motif), attach 2 to 4 of its references so the model has enough signal to match it. One reference can be thin; more than four starts to average out the look. This is a judgment call on how distinctive and consistent the brand's existing work is.
-
 ## Default to `pro`
 
 Use the `pro` model tier for creative output. It's the highest-quality path and the schema default. Don't downgrade to `fast` or `standard` for finals. Reach for the cheaper tiers only when the user explicitly wants speed or volume over quality (rough drafts, throwaway exploration).
@@ -34,5 +30,5 @@ A failed generation costs credits and time. Read what went wrong before firing a
 | The tool call returns an error | Bad parameter, missing reference, or a transient failure | Surface the actual error to the user. Fix the specific cause (attach the missing reference, correct the parameter) and retry once, but never loop the same failing call. |
 | Out of credits | The account balance is exhausted | Stop. Tell the user they're out of credits and need to top up; retrying will keep failing. Check with `bloom_check_credits` before a large batch so you catch this up front. |
 | Prompt references an image that isn't attached | Bloom has no memory between calls | Attach the image (upload or reference ID) before the call. A pronoun or "this" with nothing attached produces an unrelated image. |
-| Output came back generic or off-brand | The prompt leaned on the brand layer; no references attached | Pull 2–4 references and regenerate with a more specific subject/composition. See the references rule above. |
+| Output came back generic or off-brand | The prompt leaned on the brand layer; no references attached | Pull references and regenerate with a more specific subject/composition. |
 | Brand not found | The brand isn't onboarded, or the name was wrong | Call `bloom_list_brands` to confirm the exact brand. Don't re-onboard a brand that already exists, which creates a duplicate. |
