@@ -10,11 +10,11 @@ The mechanics, which tool to call (`bloom_search_user_images`, `bloom_list_image
 
 ## Use `pro` unless asked otherwise
 
-Use the `pro` model tier unless the user asks otherwise — it's the highest-quality path and the schema default. Reach for `fast` or `standard` only when the user explicitly wants speed or volume over quality (rough drafts, throwaway exploration).
+Use the `pro` model tier unless the user asks otherwise. It's the highest-quality path and the schema default. Reach for `fast` or `standard` only when the user explicitly wants speed or volume over quality (rough drafts, throwaway exploration).
 
 ## Don't onboard a brand that already exists
 
-Before calling `bloom_onboard_brand`, check whether the brand is already there; call `bloom_list_brands` first. Onboarding takes ~60–90 seconds and creates a duplicate if one already exists. The tool description guards this too; it's worth the one-line check.
+Before calling `bloom_onboard_brand`, check whether the brand is already there; call `bloom_list_brands` first. Onboarding takes about 60 to 90 seconds and creates a duplicate if one already exists. The tool description guards this too; it's worth the one-line check.
 
 ## Be honest when a batch gets pushback
 

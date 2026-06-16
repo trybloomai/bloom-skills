@@ -8,7 +8,7 @@ So your prompt's job is narrow. Describe the **subject** (what's in the frame), 
 
 ## Minimal beats detailed
 
-A short prompt that leans on the brand layer beats a long one. Describe only what the image needs — subject, composition, and medium when it matters — adding detail only when the concept calls for it.
+A short prompt that leans on the brand layer beats a long one. Describe only what the image needs (subject, composition, and medium when it matters), adding detail only when the concept calls for it.
 
 ## What to prompt for
 
@@ -20,25 +20,27 @@ Subject and composition carry most of the information. A few examples of the rig
 
 Specify medium when you want to nudge toward a particular idiom: "photograph," "vector illustration," "isometric 3D render," "line drawing." Leave it off when the medium should follow from the brand's existing visual DNA.
 
-## Constraints, not styling
-
-Negative constraints are legitimate and useful; aesthetic adjectives aren't. "No humans, no laptops, no UI mockups" steers the model away from the generic person-at-a-laptop SaaS-stock default it falls into when left unguided. That's a real instruction. "Sleek, modern, premium" is not; it just repeats the brand layer.
-
 ## Palette-color override
 
 If a brand color shouldn't dominate a particular image (a red accent showing up as the primary color when it should be a highlight), call it out explicitly in the prompt ("red used only as a small accent, not the dominant color"). If the same problem keeps recurring across generations, the fix is upstream: suggest updating the brand's color system in Bloom so future gens auto-correct, instead of fighting it per-prompt.
 
-## The failure mode
+## What to strip, what to keep
 
-The most common mistake when prompting Bloom is over-specifying aesthetic. Several flavors:
+Over-specifying the aesthetic is the most common mistake when prompting Bloom. The fix is narrow: cut the words the brand layer already covers, and keep the words that carry real information or what the user actually asked for. Ask of any word: is it doing something the brand layer doesn't already do? If it's generic decoration, cut it. If it's a constraint, a concrete spec, or the look the user asked for, keep it exactly.
 
-**Redundant adjectives.** Words like *professional*, *sleek*, *premium*, *modern*, *minimalist*, *clean*, or *refined* describe what Bloom already does. The brand layer carries the aesthetic. Repeating it mostly wastes tokens; at best you've added nothing.
+**Strip (decoration the brand already applies):**
 
-**Conflicting adjectives.** Words like *futuristic*, *neon*, *cyberpunk*, *holographic*, *circuit-textured*, *high-tech*, or *digital* point at exactly the visual clichés the system prompt steers away from. When the prompt pulls toward those clichés, the model is satisfying two opposing forces and the output gets muddier than if you'd said nothing about style.
+- Aesthetic filler: *professional, sleek, premium, modern, minimalist, clean, refined, high-quality, hyperrealistic.* Cutting "premium" changes nothing; the brand layer already handles it.
+- Cliché-conflicting words, when they aren't the concept: *futuristic, neon, holographic, circuit-textured, high-tech.* They point at the clichés the system already steers away from, and the output gets muddier than if you'd said nothing about style.
+- A "match the attached references" instruction. The model uses attached references on its own.
 
-**Generic person-at-laptop scenes.** Asking for "a person working on a laptop" or "a team collaborating in an office" lands you in the stock-photo default the brand layer is trying to escape. If the concept genuinely needs a person, describe a specific, non-generic moment; otherwise constrain it out.
+**Keep (real information, exactly as written):**
 
-**Premium-restraint applied to the wrong brand.** The system aims for clean and refined by default, but not every brand wants that register. A brand that's loud, playful, maximalist, or gritty should be prompted to its actual identity; don't reflexively reach for "editorial restraint" and "lots of whitespace" on a brand whose whole point is energy. Match the brand's real register, not a generic premium one.
+- Functional constraints: "do not alter the label or text," "no batch number or expiry," "no logos in the overlay," the exact headline copy, exact hex codes, exact layout ("top 38% photo"), "back view." These are instructions, not decoration, and dropping them changes the output.
+- Negative constraints: "no humans," "no UI mockups." Real steering.
+- The user's concept, in their words: if they asked for a cyberpunk launch hero, a 1970s period poster, a gritty analog brand, or a person at a laptop, carry it through exactly. The aesthetic or subject is the concept, not filler you added. The same word you'd cut as filler ("neon") you keep when the user made it the point.
+- The brand's real register: a loud, playful, or gritty brand should be prompted to its actual identity. Don't reach for "editorial restraint" and whitespace on a brand whose whole point is energy.
+- Subject, composition, and medium. Always.
 
 ## Examples
 
@@ -69,11 +71,3 @@ Subject (laptop, desk, dashboard), composition (elevated angle, dashboard visibl
 > Three pricing tier cards arranged side by side on a soft neutral background, each with a header and a list of features. The middle card is slightly raised, suggesting it's the recommended option.
 
 Now the prompt tells Bloom what's in the frame and how it's laid out.
-
-## When to deviate
-
-The world model exists to catch the failure mode above. It doesn't override genuine concept-driven intent.
-
-If the user has explicitly asked for a specific aesthetic that *is* the concept (a deliberately cyberpunk-themed launch hero, a brand whose identity actually is gritty and analog, an event poster where the period style is the point), follow user intent. The world model says "don't reflexively layer on aesthetic adjectives that fight the brand." It doesn't say "never describe a visual style."
-
-The test: are the aesthetic words you're considering serving a concept the user asked for, or are they default boilerplate you're adding because the prompt feels too plain? If the second, drop them.
