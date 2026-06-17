@@ -1,0 +1,37 @@
+skills/bloom/rules/prompting.md
+  s_e740d3c4414347::t_2b7b6e1eac1777 27,29,31,33-35,37,39-43
+  s_8c4a897efb2c4b::t_d9e6d2f9f5481e 11
+skills/bloom/rules/copy.md
+  s_e740d3c4414347::t_e78cfe71641f72 13
+  s_e740d3c4414347::t_54fec652d8565a 17
+skills/bloom/rules/workflow.md
+  s_e740d3c4414347::t_08f80cfaf289ab 13
+  s_e740d3c4414347::t_6be4377a1d6780 33
+  s_e740d3c4414347::t_aac3451e44393f 11
+  s_e740d3c4414347::t_509fe30abffec9 17
+  s_e740d3c4414347::t_d00b47eb5701dc 5,7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.8",
+  "base_commit_sha": "6347605f5a27a20bc25a364a6606b79e7abbbcf1",
+  "prompts": {},
+  "sessions": {
+    "s_8c4a897efb2c4b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a23193f1-40a9-423e-88e6-7d1aeb0e4005",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Tomas Ward <tomas@familiaward.com.ar>"
+    },
+    "s_e740d3c4414347": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ce18db83-5023-4eaf-a95a-5c32e31e7fc3",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Tomas Ward <tomas@familiaward.com.ar>"
+    }
+  }
+}
