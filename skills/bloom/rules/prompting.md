@@ -22,7 +22,7 @@ Specify medium when you want to nudge toward a particular idiom: "photograph," "
 
 ## References over adjectives
 
-When you want the brand's existing look, attach reference images — don't describe that style in words, and don't add a "match the attached references" instruction either. The image model uses attached references natively, the generation pipeline references them downstream, and the brand is already applied on top; restating it in the prompt is redundant and just gives the model a second, blurrier copy of the instruction. If you want a *specific* look the brand wouldn't reach by default, attach a reference rather than writing it out. The one exception is an exact reproduction: if the user needs a near-copy of a specific reference, say so explicitly.
+When you want the brand's existing look, attach reference images — don't describe that style in words. The image model uses attached references natively, the generation pipeline references them downstream, and the brand is already applied on top; restating it in the prompt is redundant and just gives the model a second, blurrier copy of the instruction. If you want a *specific* look the brand wouldn't reach by default, attach a reference rather than writing it out. The one exception is an exact reproduction: if the user needs a near-copy of a specific reference, say so explicitly.
 
 ## Constraints, not styling
 
