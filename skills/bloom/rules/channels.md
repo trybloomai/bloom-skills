@@ -4,10 +4,11 @@ When the user names a platform but not a ratio, use this mapping. Confirm with t
 
 | Destination | Aspect ratio |
 |---|---|
-| X / Twitter | `1:1` |
+| X / Twitter | `16:9` |
 | LinkedIn | `4:5` |
 | Instagram feed | `4:5` |
 | Instagram story | `9:16` |
+| Facebook feed ad | `4:5` |
 | Blog hero / pitch-deck cover / web banner / OG card | `16:9` |
 
 ## Only use ratios Bloom supports
