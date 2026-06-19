@@ -25,5 +25,4 @@ Then read [`rules/prompting.md`](rules/prompting.md) for writing the prompt text
 
 ## References
 
-- For tool semantics (parameters, async behavior, reference images, workspaces, credits), the tool descriptions on `bloom_generate_image`, `bloom_edit_image`, `bloom_list_images`, etc. are the source of truth. Read those rather than restating them here.
 - Bloom has no memory between calls. If your prompt references an image (with a pronoun, a definite article, or "this"), that image has to be attached. The MCP server's `instructions` field covers the architectural details.
