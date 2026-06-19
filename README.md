@@ -89,7 +89,6 @@ skills/bloom/
   rules/
     prompting.md    subject, composition, medium
     workflow.md     references, generation flow
-    channels.md     aspect ratios per platform
 ```
 
 <div align="center">
