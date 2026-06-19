@@ -20,10 +20,6 @@ Subject and composition carry most of the information. A few examples of the rig
 
 Specify medium when you want to nudge toward a particular idiom: "photograph," "vector illustration," "isometric 3D render," "line drawing." Leave it off when the medium should follow from the brand's existing visual DNA.
 
-## Palette-color override
-
-If a brand color shouldn't dominate a particular image (a red accent showing up as the primary color when it should be a highlight), call it out explicitly in the prompt ("red used only as a small accent, not the dominant color"). If the same problem keeps recurring across generations, the fix is upstream: suggest updating the brand's color system in Bloom so future gens auto-correct, instead of fighting it per-prompt.
-
 ## What to strip, what to keep
 
 Over-specifying the aesthetic is the most common mistake when prompting Bloom. The fix is narrow: cut the words the brand layer already covers, and keep the words that carry real information or what the user actually asked for. Ask of any word: is it doing something the brand layer doesn't already do? If it's generic decoration, cut it. If it's a constraint, a concrete spec, or the look the user asked for, keep it exactly.
