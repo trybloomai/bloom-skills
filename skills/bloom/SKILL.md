@@ -26,7 +26,6 @@ Then read the additional rule for the specific choice you're making:
 | Task | Rule |
 |---|---|
 | Writing the prompt text | [`rules/prompting.md`](rules/prompting.md) |
-| Writing the headline copy on the image | [`rules/copy.md`](rules/copy.md) |
 | Choosing an aspect ratio | [`rules/channels.md`](rules/channels.md) |
 
 ## References

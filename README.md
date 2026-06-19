@@ -88,7 +88,6 @@ skills/bloom/
   SKILL.md          dispatcher: loads first, points to the right rule
   rules/
     prompting.md    subject, composition, medium
-    copy.md         in-image headline copy
     workflow.md     references, generation flow
     channels.md     aspect ratios per platform
 ```
