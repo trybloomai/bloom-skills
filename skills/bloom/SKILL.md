@@ -19,7 +19,7 @@ So your prompt's job is narrow: describe the **subject**, the **composition**, a
 
 ## Required reading
 
-For any Bloom generation, edit, resize, or brand-image task, read [`rules/workflow.md`](rules/workflow.md) before calling tools. It covers references, model tier, batch setup, and failure recovery.
+For any Bloom generation, edit, resize, or brand-image task, read [`rules/workflow.md`](rules/workflow.md) before calling tools. It covers checking for references first.
 
 Then read [`rules/prompting.md`](rules/prompting.md) for writing the prompt text.
 
