@@ -13,9 +13,7 @@ metadata:
 
 ## The world model
 
-Bloom is the system that owns brand. When you call `bloom_generate_image` or `bloom_edit_image`, the brand's visual DNA (palette, typography, tone, aesthetic, logo treatment) is already attached as image references, and a generation system prompt that knows the brand is applied on top, enforcing quality stances like restraint, whitespace, and no tech clichés.
-
-So your prompt's job is narrow: describe the **subject**, the **composition**, and the **medium**. That's where your prompt adds information; everything else is already handled.
+Bloom owns the brand layer: when you call `bloom_generate_image` or `bloom_edit_image`, the brand's visual DNA and a brand-aware system prompt are already applied. So your prompt's job is narrow — describe the **subject**, the **composition**, and the **medium**; everything else is handled. [`rules/prompting.md`](rules/prompting.md) covers what that means.
 
 ## Required reading
 
