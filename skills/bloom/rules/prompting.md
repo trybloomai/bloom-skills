@@ -35,8 +35,6 @@ Over-specifying the aesthetic is the most common mistake when prompting Bloom. T
 - Functional constraints: "do not alter the label or text," "no batch number or expiry," "no logos in the overlay," the exact headline copy, exact hex codes, exact layout ("top 38% photo"), "back view." These are instructions, not decoration, and dropping them changes the output.
 - Negative constraints: "no humans," "no UI mockups." Real steering.
 - The user's concept, in their words: if they asked for a cyberpunk launch hero, a 1970s period poster, a gritty analog brand, or a person at a laptop, carry it through exactly. The aesthetic or subject is the concept, not filler you added. The same word you'd cut as filler ("neon") you keep when the user made it the point.
-- The brand's real register: a loud, playful, or gritty brand should be prompted to its actual identity. Don't reach for "editorial restraint" and whitespace on a brand whose whole point is energy.
-- Subject, composition, and medium. Always.
 
 ## Examples
 
