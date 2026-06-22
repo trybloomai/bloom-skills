@@ -3,7 +3,7 @@ name: bloom
 version: 0.1.0
 license: MIT
 description: |
-  Creating, editing, resizing, or adapting brand images, ads, and social/marketing creative with Bloom: Instagram, LinkedIn, Facebook, X, TikTok posts, stories, carousels, thumbnails, banners, billboards, hero images, OG cards, or product shots using a brand's mascot, logo, or palette. Covers generating from a prompt, removing backgrounds, vectorizing logos, changing aspect ratio, and writing in-image headline copy. Trigger whenever the user mentions Bloom or asks to create/edit/resize a brand picture, post, or ad, or before any bloom_generate_image / bloom_edit_image / bloom_resize_image call. If a request produces or changes a brand picture, use this skill first.
+  Read this skill before generating, editing, resizing, vectorizing, or removing the background from any image with Bloom (any bloom_* tool). Trigger for any brand image, ad, logo, social post, hero, or OG card the user wants made or changed.
 metadata:
   author: Bloom
   url: https://trybloom.ai/mcp
