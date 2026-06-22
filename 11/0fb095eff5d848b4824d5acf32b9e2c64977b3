@@ -1,0 +1,19 @@
+skills/bloom/rules/prompting.md
+  s_037a6c1c7e8f8b::t_618575de902e0e 19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9",
+  "base_commit_sha": "110fb095eff5d848b4824d5acf32b9e2c64977b3",
+  "prompts": {},
+  "sessions": {
+    "s_037a6c1c7e8f8b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "73126512-8ebc-4933-b1f0-ea74c531d267",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Tomas Ward <tomas@familiaward.com.ar>"
+    }
+  }
+}
