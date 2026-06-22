@@ -16,7 +16,7 @@ Subject and composition carry most of the information.
 
 Specify medium when you want to nudge toward a particular idiom: "photograph," "vector illustration," "isometric 3D render," "line drawing." Leave it off when the medium should follow from the brand's existing visual DNA.
 
-## What to strip, what to keep
+## Cut what the brand already does
 
 Over-specifying the aesthetic is the most common mistake when prompting Bloom. The fix is narrow: cut the words the brand layer already covers, and keep the words that carry real information or what the user actually asked for. Ask of any word: is it doing something the brand layer doesn't already do? If it's generic decoration, cut it. If it's a constraint, a concrete spec, or the look the user asked for, keep it exactly.
 
