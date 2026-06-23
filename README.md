@@ -85,10 +85,7 @@ Full per-agent setup, updates, and troubleshooting live in [docs/quickstart.md](
 
 ```text
 skills/bloom/
-  SKILL.md          dispatcher: loads first, points to the right rule
-  rules/
-    prompting.md    subject, composition, medium
-    workflow.md     references, generation flow
+  SKILL.md          the whole skill (one file)
 ```
 
 <div align="center">
