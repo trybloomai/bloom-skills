@@ -11,7 +11,9 @@ metadata:
 
 # How to prompt Bloom
 
-Bloom is a brand-aware system. So your prompt's job is narrow. Describe the subject (what's in the frame), the composition (how it's arranged), and the medium when the concept calls for it (photograph, illustration, 3D render, vector). That's the surface where your prompt adds information. Everything else is already handled.
+Bloom is a brand-aware system, so your prompt's job is narrow. Describe the subject (what's in the frame) and the composition (how it's arranged), plus the medium when the concept genuinely calls for it (photograph, illustration, 3D render, vector).
+
+Do not name the brand's style, era, mood, or palette. Bloom already applies the look from the brand identity and references; describing it in words fights that layer and flattens the result. Say what to make, not how it should feel.
 
 ## Check for references before generating
 
