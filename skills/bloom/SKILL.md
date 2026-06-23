@@ -3,7 +3,7 @@ name: bloom
 version: 0.1.0
 license: MIT
 description: |
-  Read this skill before generating, editing, resizing, vectorizing, or removing the background from any image with Bloom (any bloom_* tool). Trigger for any brand image, ad, logo, social post, hero, or OG card the user wants made or changed.
+  Read this skill before generating, editing, resizing, vectorizing, or removing the background from any image with Bloom. Trigger for any brand image, ad, logo, social post, hero, or OG card the user wants made or changed.
 metadata:
   author: Bloom
   url: https://trybloom.ai/mcp
