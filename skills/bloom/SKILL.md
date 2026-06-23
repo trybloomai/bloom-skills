@@ -13,7 +13,7 @@ metadata:
 
 Bloom is a brand-aware system, so your prompt's job is narrow. Describe the subject (what's in the frame) and the composition (how it's arranged), plus the medium when the concept genuinely calls for it (photograph, illustration, 3D render, vector).
 
-Bloom attaches the brand's identity and your chosen references to every generation, so the look is already applied before your prompt is read. Your prompt adds the subject and composition on top; it doesn't restate the look. When a tool reports the brand's style (an aesthetic field, a reference's description), use it to pick references, not to copy into the prompt; naming the look just re-applies what's already there. Say what to make, not how it should feel.
+Don't name the brand's style, era, mood, or palette, even when a tool describes them (an aesthetic field, a reference's description). Read those to pick references, don't copy their words. Bloom applies the look itself. Say what to make, not how it should feel.
 
 ## Check for references before generating
 
