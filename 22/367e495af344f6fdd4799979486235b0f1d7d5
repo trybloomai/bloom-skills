@@ -1,0 +1,19 @@
+skills/bloom/SKILL.md
+  s_f35417333bbe0a::t_aa3a690b4afe87 16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.10",
+  "base_commit_sha": "22367e495af344f6fdd4799979486235b0f1d7d5",
+  "prompts": {},
+  "sessions": {
+    "s_f35417333bbe0a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3a3038eb-e7a8-49f6-8ca4-0a1ed0f1482f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Tomas Ward <tomas@familiaward.com.ar>"
+    }
+  }
+}
