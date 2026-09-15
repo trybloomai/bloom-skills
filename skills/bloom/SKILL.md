@@ -34,11 +34,12 @@ install a customer's Brand Skill.
 
 ## Choose API or MCP
 
-- Use **MCP** for live work in an interactive agent client. Start at
-  <https://docs.trybloom.ai/mcp/getting-started> to connect and sign in.
+- Use **MCP** for live work in an interactive agent client. Start with the
+  [MCP quickstart](https://docs.trybloom.ai/mcp/getting-started) to connect and
+  sign in.
 - Use the **API** for an application, backend, pipeline, or deterministic
-  automation. Start at <https://docs.trybloom.ai/api> and use the live
-  OpenAPI specification for exact contracts.
+  automation. Start with the [API quickstart](https://docs.trybloom.ai/api) and
+  use the live OpenAPI specification for exact contracts.
 
 Brand Skill retrieval is a workflow through those interfaces, not a third way
 to connect to Bloom.
@@ -48,9 +49,9 @@ to connect to Bloom.
 Before constructing a request or tool call, read the relevant public guide and
 its current contract:
 
-- Documentation map: <https://docs.trybloom.ai/llms.txt>
-- API contract: <https://www.trybloom.ai/api/v1/spec.json>
-- MCP setup and discovery: <https://docs.trybloom.ai/mcp/getting-started>
+- [Documentation map](https://docs.trybloom.ai/llms.txt)
+- [API contract](https://www.trybloom.ai/api/v1/spec.json)
+- [MCP setup and discovery](https://docs.trybloom.ai/mcp/getting-started)
 
 Do not copy fields or tool names from memory. The OpenAPI specification owns
 the public REST contract. For MCP, the connected account's live tool list owns
