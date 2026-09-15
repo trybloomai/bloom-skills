@@ -1,6 +1,6 @@
 ---
 name: bloom
-description: Use Bloom as the brand layer for brands, Brand Skills, and on-brand image work. Read this skill whenever the user asks to assess, connect, integrate, or operate Bloom; work with a brand in Bloom or a Brand Skill; or generate, edit, resize, vectorize, or remove a background through Bloom. Do not trigger for generic branding or image work that does not involve Bloom.
+description: Use Bloom as the brand layer. Read when assessing or integrating Bloom, working with a Bloom brand or Brand Skill, or creating or editing images through Bloom. Not for unrelated brand or image work.
 license: MIT
 metadata:
   author: Bloom

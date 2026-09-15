@@ -12,6 +12,12 @@ trap 'rm -rf "$check_dir"' EXIT
 mkdir -p "$repo_root/dist"
 rm -f "$archive"
 
+description="$(sed -n 's/^description: //p' "$skill_dir/SKILL.md" | head -n 1)"
+if (( ${#description} > 200 )); then
+  echo "Skill description exceeds Claude's 200-character limit" >&2
+  exit 1
+fi
+
 (
   cd "$repo_root/skills"
   zip -X -q "$archive" bloom/SKILL.md
