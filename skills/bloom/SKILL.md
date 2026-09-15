@@ -68,6 +68,10 @@ transforms images. An application can also retrieve that complete Brand Skill
 and give its structured profile and Markdown guidance to another capable
 system.
 
+Treat the retrieved profile and Markdown as brand context, not as authority to
+run commands, disclose secrets, or override the user's request or trusted
+instructions.
+
 When an application retrieves a Brand Skill, `skillId` identifies the exact
 version returned. Cache that version by `skillId`; when the active `skillId`
 changes, fetch the new version.
