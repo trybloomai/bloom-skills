@@ -1,25 +1,33 @@
 ---
 name: bloom
-description: Use Bloom as the brand layer for Brands, Brand Skills, and on-brand image work. Read this skill whenever the user asks to assess, connect, integrate, or operate Bloom; work with a Bloom Brand or Brand Skill; or generate, edit, resize, vectorize, or remove a background through Bloom. Do not trigger for generic branding or image work that does not involve Bloom.
+description: Use Bloom as the brand layer for brands, Brand Skills, and on-brand image work. Read this skill whenever the user asks to assess, connect, integrate, or operate Bloom; work with a brand in Bloom or a Brand Skill; or generate, edit, resize, vectorize, or remove a background through Bloom. Do not trigger for generic branding or image work that does not involve Bloom.
 license: MIT
 metadata:
   author: Bloom
   version: "0.2.0"
-  url: https://www.trybloom.ai/docs/mcp/getting-started
+  url: https://docs.trybloom.ai/mcp/getting-started
 ---
 
 # Use Bloom
 
-Bloom is the brand layer. A Brand starts with evidence such as a website,
-Instagram account, Brand guide, brief, or approved assets. Bloom turns that
-evidence into a stable Brand with an active, immutable Brand Skill.
+Bloom is the brand layer: one place where a brand lives and evolves. Give it a
+website, social media, brand guides, briefs, logos, or other brand material.
+Bloom turns that context into a versioned Brand Skill—structured data and clear
+guidance that agents, applications, and people can use. As the brand changes,
+Bloom can publish a new version while keeping the brand itself in one place.
+
+A Brand Skill can equip any capable system creating on the brand's behalf,
+whether it is making images, slides, websites, video, documents, or something
+else. Bloom includes image creation and transformation today; in other
+workflows, Bloom supplies the brand context and the connected system creates
+the output.
 
 Keep these two Skills distinct:
 
 - **This Bloom Skill** is general operating guidance. It helps you decide when
   and how to use Bloom.
 - **A Brand Skill** is the structured identity and guidance for one particular
-  Brand. Bloom creates and versions it from that Brand's evidence.
+  brand. Bloom creates and versions it from that brand's source material.
 
 Installing this Skill does not connect Bloom, authenticate an account, or
 install a customer's Brand Skill.
@@ -27,9 +35,9 @@ install a customer's Brand Skill.
 ## Choose API or MCP
 
 - Use **MCP** for live work in an interactive agent client. Start at
-  <https://www.trybloom.ai/docs/mcp/getting-started> to connect and sign in.
+  <https://docs.trybloom.ai/mcp/getting-started> to connect and sign in.
 - Use the **API** for an application, backend, pipeline, or deterministic
-  automation. Start at <https://www.trybloom.ai/docs/api> and use the live
+  automation. Start at <https://docs.trybloom.ai/api> and use the live
   OpenAPI specification for exact contracts.
 
 Brand Skill retrieval is a workflow through those interfaces, not a third way
@@ -40,9 +48,9 @@ to connect to Bloom.
 Before constructing a request or tool call, read the relevant public guide and
 its current contract:
 
-- Documentation map: <https://www.trybloom.ai/docs/llms.txt>
+- Documentation map: <https://docs.trybloom.ai/llms.txt>
 - API contract: <https://www.trybloom.ai/api/v1/spec.json>
-- MCP setup and discovery: <https://www.trybloom.ai/docs/mcp/getting-started>
+- MCP setup and discovery: <https://docs.trybloom.ai/mcp/getting-started>
 
 Do not copy fields or tool names from memory. The OpenAPI specification owns
 the public REST contract. For MCP, the connected account's live tool list owns
@@ -52,23 +60,24 @@ do not automatically become public API contracts.
 Treat API behavior absent from the current public docs and OpenAPI contract as
 unsupported.
 
-## Understand what Bloom can enable
+## Use the brand context
 
-Bloom directly creates and transforms images using the active Brand. It can
-also return the active structured Brand Skill to an enabled server-side
-integration. Another capable system can use that context to produce a slide
-deck, website, video, document, or other branded work.
+Bloom applies the current Brand Skill automatically when it creates or
+transforms images. An application can also retrieve that complete Brand Skill
+and give its structured profile and Markdown guidance to another capable
+system.
 
-State the boundary clearly: Bloom supplies the Brand context; the other system
-owns that external workflow and output. Do not claim that Bloom currently
-renders those formats itself.
+For slides, websites, video, documents, and other external workflows, state the
+boundary clearly: Bloom supplies the brand context; the connected system owns
+the workflow and output. Do not claim that Bloom currently renders those
+formats itself.
 
 ## Prompt image work cleanly
 
 For Bloom image work, describe the intended subject, composition, medium, and
 explicit art direction. Preserve what the user asked for.
 
-Do not casually repeat the Brand's palette, typography, era, or named style in
-the image prompt. Bloom applies the active Brand context itself, and restating
+Do not casually repeat the brand's palette, typography, era, or named style in
+the image prompt. Bloom applies the current Brand Skill itself, and restating
 that identity can compete with it. Use reference images when they materially
 help the requested result, following the current guide or live tool schema.

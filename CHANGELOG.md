@@ -14,7 +14,7 @@ and re-upload it (Claude Desktop, Claude web, Cowork).
   from each customer-specific Brand Skill.
 - Routed interactive work to MCP and application integrations to the API without
   duplicating their current contracts.
-- Explained how Brand context can guide external slide, website, video, and
+- Explained how brand context can guide external slide, website, video, and
   document workflows without claiming that Bloom renders those outputs.
 - Made project installation the default and reduced setup documentation to the
   canonical Bloom quickstarts.
