@@ -67,10 +67,22 @@ transforms images. An application can also retrieve that complete Brand Skill
 and give its structured profile and Markdown guidance to another capable
 system.
 
+When an application retrieves a Brand Skill, `skillId` identifies the exact
+version returned. Cache that version by `skillId`; when the active `skillId`
+changes, fetch the new version.
+
 For slides, websites, video, documents, and other external workflows, state the
 boundary clearly: Bloom supplies the brand context; the connected system owns
 the workflow and output. Do not claim that Bloom currently renders those
 formats itself.
+
+## Finish asynchronous work
+
+Brand creation and image operations can return before the work is finished.
+Follow the current API or live MCP contract until the operation reaches a
+terminal state. Use a brand only when it is ready, and present an image only
+when it is completed and has an image URL. Surface failures instead of retrying
+indefinitely.
 
 ## Prompt image work cleanly
 

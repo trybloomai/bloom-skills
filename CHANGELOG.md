@@ -6,7 +6,7 @@ After updating, re-run `npx skills update bloom` (local agents) or re-download t
 [latest ZIP](https://github.com/trybloomai/bloom-skills/releases/latest/download/bloom.skill.zip)
 and re-upload it (Claude Desktop, Claude web, Cowork).
 
-## [Unreleased]
+## [0.2.0] - 2026-09-15
 
 ### Changed
 
@@ -18,6 +18,10 @@ and re-upload it (Claude Desktop, Claude web, Cowork).
   document workflows without claiming that Bloom renders those outputs.
 - Made project installation the default and reduced setup documentation to the
   canonical Bloom quickstarts.
+- Made Bloom's documentation URL the primary install source while retaining the
+  public repository as the inspectable source and direct-install fallback.
+- Added concise guidance for completing asynchronous work and caching retrieved
+  Brand Skills by `skillId`.
 - Generated the Claude upload ZIP from the same one-file Skill source.
 
 ## [0.1.0] - 2026-06-05

@@ -33,14 +33,18 @@ Install in the current project so the guidance is reviewable and shared with
 the repository:
 
 ```bash
-npx skills add trybloomai/bloom-skills --skill bloom
+npx skills add https://docs.trybloom.ai --skill bloom
 ```
+
+Bloom's documentation hosts the same Skill as this repository. To install
+directly from its source instead, run
+`npx skills add trybloomai/bloom-skills --skill bloom`.
 
 Use `--global` when you deliberately want Bloom guidance across unrelated
 projects:
 
 ```bash
-npx skills add trybloomai/bloom-skills --skill bloom --global
+npx skills add https://docs.trybloom.ai --skill bloom --global
 ```
 
 To use the Skill for one session without installing it:
