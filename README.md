@@ -1,94 +1,87 @@
 <div align="center">
 
-<img src="assets/bloom-mcp-og.png" alt="Bloom" width="100%" />
+<img src="assets/bloom-mcp-og.png" alt="Bloom — the brand layer, callable from anywhere" width="100%" />
 
-<br />
+# Bloom Skill
 
-# Bloom Agent Skill
-
-**Teach your agent to create on-brand images with Bloom.**
-
-[![skills.sh](https://img.shields.io/badge/skills.sh-bloom-000000?logo=vercel&logoColor=white)](https://skills.sh/trybloomai/bloom-skills)
-&nbsp;
-[![MCP](https://img.shields.io/badge/MCP-trybloom.ai-7C3AED)](https://trybloom.ai/mcp)
-&nbsp;
-[![License](https://img.shields.io/badge/License-MIT-191919)](LICENSE)
-
-<br />
-
-![Claude Code](https://img.shields.io/badge/Claude_Code-191919?logo=anthropic&logoColor=white)
-![Codex](https://img.shields.io/badge/Codex-191919?logo=openai&logoColor=white)
-![Cursor](https://img.shields.io/badge/Cursor-191919?logo=cursor&logoColor=white)
-![Windsurf](https://img.shields.io/badge/Windsurf-191919?logo=windsurf&logoColor=white)
-![OpenCode](https://img.shields.io/badge/OpenCode-191919)
+Persistent guidance for agents working with Bloom.
 
 </div>
 
----
+Bloom turns Brand evidence into a working system that agents and applications
+can call. This repository contains one optional Agent Skill that teaches an
+agent what Bloom is, when to use it, and whether a workflow belongs on the API
+or MCP.
 
-Bloom already owns the brand: palette, typography, logo, aesthetic. This skill teaches your agent the rest: how to write prompts, pick aspect ratios, attach references, and write in-image headline copy.
+> A Bloom Skill teaches an agent how and when to use Bloom.
+>
+> A Brand Skill contains the context for one particular Brand.
 
-## Quickstart
-
-```bash
-npx skills add trybloomai/bloom-skills --skill bloom --global
-```
-
-Then connect the Bloom MCP server in your agent:
-
-```text
-https://trybloom.ai/mcp
-```
-
-And ask:
-
-```text
-Generate an Instagram feed launch image for Acme with Bloom. The product box
-floating above a messy breakfast table, morning light, one hand reaching into
-frame. Photograph.
-```
+The Skill does not connect or authenticate Bloom. API and MCP remain the
+execution paths.
 
 ## Install
 
-The same command works for every terminal agent. Find your client:
+Install in the current project so the guidance is reviewable and shared with
+the repository:
 
-<table>
-<tbody>
-<tr>
-<td><img src="assets/logos/claude.svg" height="15" align="absmiddle" />&nbsp; <b>Claude Code</b></td>
-<td rowspan="5">
+```bash
+npx skills add trybloomai/bloom-skills --skill bloom
+```
+
+Use `--global` when you deliberately want Bloom guidance across unrelated
+projects:
 
 ```bash
 npx skills add trybloomai/bloom-skills --skill bloom --global
 ```
 
-Drop <code>--global</code> to install in the current project only.
+To use the Skill for one session without installing it:
 
-</td>
-</tr>
-<tr><td><img src="assets/logos/openai.svg" height="15" align="absmiddle" />&nbsp; <b>Codex</b></td></tr>
-<tr><td><img src="assets/logos/cursor.svg" height="15" align="absmiddle" />&nbsp; <b>Cursor</b></td></tr>
-<tr><td><img src="assets/logos/windsurf.svg" height="15" align="absmiddle" />&nbsp; <b>Windsurf</b></td></tr>
-<tr><td><img src="assets/logos/opencode.svg" height="15" align="absmiddle" />&nbsp; <b>OpenCode</b></td></tr>
-<tr>
-<td><img src="assets/logos/claude.svg" height="15" align="absmiddle" />&nbsp; <b>Claude Desktop · Web · Cowork</b></td>
-<td>Download the <a href="https://github.com/trybloomai/bloom-skills/releases/latest/download/bloom.skill.zip">ZIP</a> and upload it in Skills settings.</td>
-</tr>
-</tbody>
-</table>
-
-Full per-agent setup, updates, and troubleshooting live in [docs/quickstart.md](docs/quickstart.md).
-
-> Bloom MCP must be connected separately. The skill guides the agent; the MCP does the work.
-
-## What's inside
-
-```text
-skills/bloom/
-  SKILL.md          the whole skill (one file)
+```bash
+npx skills use trybloomai/bloom-skills@bloom
 ```
 
-<div align="center">
-<br />
-<sub>MIT · <a href="https://trybloom.ai/mcp">trybloom.ai/mcp</a></sub>
-</div>
+### Claude upload
+
+Claude chat, desktop, and Cowork can upload a custom Skill directly. Download
+[`bloom.skill.zip`](https://github.com/trybloomai/bloom-skills/releases/latest/download/bloom.skill.zip),
+then choose **Customize → Skills → Create skill → Upload a skill**.
+
+The ZIP contains the same `bloom/SKILL.md` as the repository install.
+
+## Connect or integrate Bloom
+
+- For interactive agent work, follow the
+  [Bloom MCP quickstart](https://www.trybloom.ai/docs/mcp/getting-started).
+- For an application or backend, follow the
+  [Bloom API quickstart](https://www.trybloom.ai/docs/api).
+- For the complete documentation map, read
+  [Bloom's `llms.txt`](https://www.trybloom.ai/docs/llms.txt).
+
+The Skill contains no credentials and does not configure MCP. Interactive MCP
+clients authenticate through Bloom's OAuth flow; server applications keep API
+keys in their own secret store.
+
+## Update or remove
+
+```bash
+npx skills update bloom
+npx skills remove bloom
+```
+
+Add `--global` to update or remove a global installation.
+
+## Package the upload ZIP
+
+The checked-in ZIP is generated from the canonical Skill:
+
+```bash
+scripts/package-skill.sh
+```
+
+The script also verifies that the archive contains the same `SKILL.md`.
+
+## License
+
+[MIT](LICENSE)
