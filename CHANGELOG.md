@@ -6,6 +6,16 @@ After updating, re-run `npx skills update bloom` (local agents) or re-download t
 [latest ZIP](https://github.com/trybloomai/bloom-skills/releases/latest/download/bloom.skill.zip)
 and re-upload it (Claude Desktop, Claude web, Cowork).
 
+## [0.3.0] - 2026-09-22
+
+### Changed
+
+- Explained the shared candidate-first lifecycle for instruction and exact
+  profile edits, including related Markdown changes and activation through Apply.
+- Added guidance for inspecting candidates according to the task and delegated
+  authority, with a link to the [Brand editing guide](https://docs.trybloom.ai/guides/edit-brand).
+- Included Brand edits in the guidance for completing asynchronous work.
+
 ## [0.2.0] - 2026-09-15
 
 ### Changed
