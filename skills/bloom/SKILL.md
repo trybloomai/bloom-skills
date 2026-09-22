@@ -18,8 +18,7 @@ Bloom can publish a new version while keeping the brand itself in one place.
 
 A Brand Skill can equip any capable system creating on the brand's behalf,
 whether it is making images, slides, websites, video, documents, or something
-else. Bloom can generate on-brand images, video, audio, and SVG, and transform
-existing images; in other
+else. Bloom can generate on-brand images, video, audio, and SVG; in other
 workflows, Bloom supplies the brand context and the connected system creates
 the output.
 

@@ -14,8 +14,7 @@ into versioned Brand Skills that agents, applications, and people can use.
 
 A Brand Skill can guide any capable system creating on the brand's behalf,
 whether it is making images, slides, websites, video, documents, or something
-else. Bloom can generate on-brand images, video, audio, and SVG, and transform
-existing images; for other work,
+else. Bloom can generate on-brand images, video, audio, and SVG; for other work,
 Bloom supplies the brand context and the connected system creates the output.
 
 This repository contains one optional Agent Skill that teaches an agent what
