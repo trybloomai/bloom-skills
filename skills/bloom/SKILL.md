@@ -117,9 +117,10 @@ only when it is complete. Surface failures instead of retrying indefinitely.
 - **Create with a chosen model:** When the request calls for a selected model or
   for video, audio, or SVG, use `generate_image_with_model`, `generate_video`,
   `generate_audio`, or `generate_svg` as appropriate. Bloom runs the generation
-  but does not inject Brand context into these tools. Retrieve relevant Brand
-  guidance and assets, include that context in the prompt, and use reference
-  inputs where the selected model supports them.
+  but does not inject Brand context into these tools. Use `get_brand` to find
+  relevant Brand guidance and assets, then `view_files` to read the needed
+  files. Include that context in the prompt and use reference inputs where the
+  selected model supports them.
 
 For this flow, call `list_generation_models` → `get_generation_model` → the
 matching generation tool → `get_generation`.
