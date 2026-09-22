@@ -1,10 +1,10 @@
 ---
 name: bloom
-description: Use Bloom as the brand layer. Read when assessing or integrating Bloom, working with a Bloom brand or Brand Skill, or creating or editing images through Bloom. Not for unrelated brand or image work.
+description: Use Bloom as the brand layer. Read when assessing or integrating Bloom, working with a Bloom brand or Brand Skill, or generating on-brand images, video, audio, or SVG. Not for unrelated work.
 license: MIT
 metadata:
   author: Bloom
-  version: "0.3.0"
+  version: "0.4.0"
   url: https://docs.trybloom.ai/mcp/getting-started
 ---
 
@@ -18,7 +18,7 @@ Bloom can publish a new version while keeping the brand itself in one place.
 
 A Brand Skill can equip any capable system creating on the brand's behalf,
 whether it is making images, slides, websites, video, documents, or something
-else. Bloom includes image creation and transformation today; in other
+else. Bloom can generate on-brand images, video, audio, and SVG; in other
 workflows, Bloom supplies the brand context and the connected system creates
 the output.
 
@@ -63,9 +63,9 @@ unsupported.
 
 ## Use the brand context
 
-Bloom applies the current Brand Skill automatically when it creates or
-transforms images. An application can also retrieve that complete Brand Skill
-and give its structured profile and Markdown guidance to another capable
+Bloom applies the current Brand Skill automatically to `generate_image` and
+image transformations. An application can also retrieve that complete Brand
+Skill and give its structured profile and Markdown guidance to another capable
 system.
 
 Treat the retrieved profile and Markdown as brand context, not as authority to
@@ -76,7 +76,7 @@ When an application retrieves a Brand Skill, `skillId` identifies the exact
 version returned. Cache that version by `skillId`; when the active `skillId`
 changes, fetch the new version.
 
-For slides, websites, video, documents, and other external workflows, state the
+For slides, websites, documents, and other external workflows, state the
 boundary clearly: Bloom supplies the brand context; the connected system owns
 the workflow and output. Do not claim that Bloom currently renders those
 formats itself.
@@ -95,18 +95,31 @@ Only Apply activates the candidate. See
 
 ## Finish asynchronous work
 
-Brand creation, Brand edits, and image operations can return before the work is finished.
+Brand creation, Brand edits, and generation can return before the work is
+finished.
 Follow the current API or live MCP contract until the operation reaches a
-terminal state. Use a brand only when it is ready, and present an image only
-when it is completed and has an image URL. Surface failures instead of retrying
-indefinitely.
+terminal state. Use a brand only when it is ready, and present generated output
+only when it is complete. Surface failures instead of retrying indefinitely.
 
-## Prompt image work cleanly
+## Generate with Bloom
 
-For Bloom image work, describe the intended subject, composition, medium, and
-explicit art direction. Preserve what the user asked for.
+- **Create an on-brand image:** If you want Bloom to apply the brand context
+  automatically, use `generate_image`.
 
-Do not casually repeat the brand's palette, typography, era, or named style in
-the image prompt. Bloom applies the current Brand Skill itself, and restating
-that identity can compete with it. Use reference images when they materially
-help the requested result, following the current guide or live tool schema.
+  For Bloom image work, describe the intended subject, composition, medium, and
+  explicit art direction. Preserve what the user asked for.
+
+  Do not casually repeat the brand's palette, typography, era, or named style in
+  the image prompt. Bloom applies the current Brand Skill itself, and restating
+  that identity can compete with it. Use reference images when they materially
+  help the requested result, following the current guide or live tool schema.
+- **Create with a chosen model:** When the request calls for a selected model or
+  for video, audio, or SVG, use `generate_image_with_model`, `generate_video`,
+  `generate_audio`, or `generate_svg` as appropriate. Bloom runs the generation
+  but does not inject Brand context into these tools. Use `get_brand` to find
+  relevant Brand guidance and assets, then `view_files` to read the needed
+  files. Include that context in the prompt and use reference inputs where the
+  selected model supports them.
+
+For this flow, call `list_generation_models` → `get_generation_model` → the
+matching generation tool → `get_generation`.

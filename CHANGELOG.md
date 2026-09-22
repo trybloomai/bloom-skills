@@ -6,6 +6,17 @@ After updating, re-run `npx skills update bloom` (local agents) or re-download t
 [latest ZIP](https://github.com/trybloomai/bloom-skills/releases/latest/download/bloom.skill.zip)
 and re-upload it (Claude Desktop, Claude web, Cowork).
 
+## [0.4.0] - 2026-09-22
+
+### Changed
+
+- Distinguished `generate_image`, which applies Brand context automatically,
+  from generation with a chosen model.
+- Described image, video, audio, and SVG generation with a chosen model,
+  including Brand retrieval with `get_brand` and `view_files`.
+- Extended asynchronous-work guidance to generation and clarified which
+  workflows Bloom leaves to connected systems.
+
 ## [0.3.0] - 2026-09-22
 
 ### Changed
