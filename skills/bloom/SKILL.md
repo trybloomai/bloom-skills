@@ -1,10 +1,10 @@
 ---
 name: bloom
-description: Use Bloom as the brand layer. Read when assessing or integrating Bloom, working with a Bloom brand or Brand Skill, or generating on-brand images, video, audio, or SVG through Bloom. Not for unrelated brand or generation work.
+description: Use Bloom as the brand layer. Read when assessing or integrating Bloom, working with a Bloom brand or Brand Skill, or generating on-brand images, video, audio, or SVG. Not for unrelated work.
 license: MIT
 metadata:
   author: Bloom
-  version: "0.3.0"
+  version: "0.4.0"
   url: https://docs.trybloom.ai/mcp/getting-started
 ---
 
