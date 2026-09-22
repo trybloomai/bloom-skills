@@ -4,7 +4,7 @@ description: Use Bloom as the brand layer. Read when assessing or integrating Bl
 license: MIT
 metadata:
   author: Bloom
-  version: "0.2.0"
+  version: "0.3.0"
   url: https://docs.trybloom.ai/mcp/getting-started
 ---
 
@@ -81,9 +81,21 @@ boundary clearly: Bloom supplies the brand context; the connected system owns
 the workflow and output. Do not claim that Bloom currently renders those
 formats itself.
 
+## Edit the brand
+
+Brand edits prepare a candidate before changing the active Brand. Natural-language
+instructions and exact profile changes share this lifecycle; even an exact logo,
+palette, or font request can also update related Markdown.
+
+Use the proposed changes and, where useful, complete file reads to inspect the
+candidate at a depth appropriate to the task and the authority delegated to you.
+You can answer clarification, refine the candidate, apply it, or discard it.
+Only Apply activates the candidate. See
+[Edit a brand](https://docs.trybloom.ai/guides/edit-brand) for the workflow.
+
 ## Finish asynchronous work
 
-Brand creation and image operations can return before the work is finished.
+Brand creation, Brand edits, and image operations can return before the work is finished.
 Follow the current API or live MCP contract until the operation reaches a
 terminal state. Use a brand only when it is ready, and present an image only
 when it is completed and has an image URL. Surface failures instead of retrying
