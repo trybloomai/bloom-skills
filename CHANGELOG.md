@@ -6,6 +6,15 @@ After updating, re-run `npx skills update bloom` (local agents) or re-download t
 [latest ZIP](https://github.com/trybloomai/bloom-skills/releases/latest/download/bloom.skill.zip)
 and re-upload it (Claude Desktop, Claude web, Cowork).
 
+## [0.5.0] - 2026-09-24
+
+### Changed
+
+- Make Brand creation and editing explicit in the Skill description.
+- Default requests to change an existing Brand to the Brand Edit workflow,
+  preserving its Brand ID. Keep new Brand onboarding available when the user
+  explicitly wants a separate Brand.
+
 ## [0.4.0] - 2026-09-22
 
 ### Changed
