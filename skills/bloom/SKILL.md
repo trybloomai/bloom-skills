@@ -1,10 +1,10 @@
 ---
 name: bloom
-description: Use Bloom as the brand layer. Read when assessing or integrating Bloom, working with a Bloom brand or Brand Skill, or generating on-brand images, video, audio, or SVG. Not for unrelated work.
+description: Use Bloom to assess or integrate brand context, create Brands, edit existing Brands and Brand Skills, and generate on-brand images, video, audio, or SVG. Not for unrelated work.
 license: MIT
 metadata:
   author: Bloom
-  version: "0.4.0"
+  version: "0.5.0"
   url: https://docs.trybloom.ai/mcp/getting-started
 ---
 
@@ -83,6 +83,12 @@ formats itself.
 
 ## Edit the brand
 
+Brand creation establishes a new Brand from source material. Brand editing
+revises an existing Brand's identity, guidance, or Brand Skill files while
+keeping the same Brand ID. When the user asks to change an existing Brand, read
+its current Brand Skill and prepare an edit by default. Onboard a new Brand only
+when the user explicitly wants a separate Brand.
+
 Brand edits prepare a candidate before changing the active Brand. Natural-language
 instructions and exact profile changes share this lifecycle; even an exact logo,
 palette, or font request can also update related Markdown.
@@ -113,6 +119,7 @@ only when it is complete. Surface failures instead of retrying indefinitely.
   the image prompt. Bloom applies the current Brand Skill itself, and restating
   that identity can compete with it. Use reference images when they materially
   help the requested result, following the current guide or live tool schema.
+
 - **Create with a chosen model:** When the request calls for a selected model or
   for video, audio, or SVG, use `generate_image_with_model`, `generate_video`,
   `generate_audio`, or `generate_svg` as appropriate. Bloom runs the generation
