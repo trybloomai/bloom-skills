@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "bloom",
   "version": "0.5.0",
-  "description": "Brand context, Brand creation and editing, and on-brand generation with Bloom.",
+  "description": "The brand layer for agents. Turn your brand's identity, guidance, and assets into shared context for agents and products.",
   "author": {
     "name": "Bloom"
   },

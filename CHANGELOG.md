@@ -24,6 +24,8 @@ For plugin installations, reload an updated plugin directory or local
 
 ### Changed
 
+- Aligned the plugin description with Bloom's "brand layer for agents"
+  positioning and shared brand context for agents and products.
 - Documented portable plugin installation, packaging, and validation alongside
   the existing standalone Skill workflows.
 - Included the plugin ZIP in the tracked distribution files and ignored local
