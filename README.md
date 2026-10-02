@@ -100,6 +100,20 @@ icon, for the plugin listing and composer. See
 Clients that do not use the OpenAI extension still discover the same Skill and
 MCP configuration from their portable locations.
 
+### ChatGPT availability
+
+ChatGPT currently marks imported plugins that declare MCP servers in `mcp.json`
+as **Desktop only**, including remote HTTPS servers. This portable ZIP includes
+that file, so importing it does not provide a ChatGPT web installation. See
+[OpenAI's import limitation](https://learn.chatgpt.com/docs/enterprise/plugin-management#desktop-only-plugins).
+
+To test Bloom's MCP tools on ChatGPT web, enable Developer mode under
+**Settings → Security and login**, then open **Plugins**, select the plus
+button, and connect `https://mcp.trybloom.ai/mcp`. Complete Bloom sign-in and test
+the connection in a new Work chat. This tests the server directly; the bundled
+Skill is supplied through the portable package separately. See
+[OpenAI's MCP quickstart](https://developers.openai.com/plugins/quickstart).
+
 ## Connect or integrate Bloom
 
 - For interactive agent work, follow the

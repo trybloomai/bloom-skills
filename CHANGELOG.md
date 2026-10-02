@@ -30,6 +30,8 @@ For plugin installations, reload an updated plugin directory or local
   positioning.
 - Documented portable plugin installation, packaging, and validation alongside
   the existing standalone Skill workflows.
+- Documented ChatGPT's desktop-only restriction for imported MCP packages and
+  the direct MCP connection path for testing tools on ChatGPT web.
 - Included the plugin ZIP in the tracked distribution files and ignored local
   `.context/` work files.
 - Retained `bloom-skills` as the repository name and `0.5.0` as the shared
