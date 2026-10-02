@@ -141,15 +141,17 @@ END {
         exact(root, "$schema", "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json")
         exact(root, "name", expected_name)
         exact(root, "version", expected_version)
-        # The requested ChatGPT website link is the only client-specific data
-        # shipped here. Keep its namespace and presentation fields closed.
+        # Ship only the requested ChatGPT website and logo presentation fields.
+        # Keep their namespace closed and require the packaged image path.
         extensions = member(root, "extensions", "object")
         closed(extensions, "com.openai", "extensions")
         openai = member(extensions, "com.openai", "object")
         closed(openai, "interface", "com.openai")
         interface = member(openai, "interface", "object")
-        closed(interface, "websiteURL", "com.openai.interface")
+        closed(interface, "websiteURL logo composerIcon", "com.openai.interface")
         exact(interface, "websiteURL", "https://www.trybloom.ai")
+        exact(interface, "logo", "./assets/bloom-logo.png")
+        exact(interface, "composerIcon", "./assets/bloom-logo.png")
         for (i = 1; i <= size[root]; i++) {
             key = keys[root, i]
             item = children[root, key]

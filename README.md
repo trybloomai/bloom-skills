@@ -83,6 +83,7 @@ README.md
 CHANGELOG.md
 LICENSE
 assets/bloom-mcp-og.png
+assets/bloom-logo.png        # Bloom's existing 512×512 app icon
 ```
 
 Both JSON files declare the Agent Plugins `1.0.0` schemas. `mcp.json` defines
@@ -90,10 +91,11 @@ one server named `bloom` at `https://mcp.trybloom.ai/mcp`. OAuth discovery and
 credential storage belong to the client; the package contains no credentials.
 The ZIP has these files directly at its root, with no enclosing directory.
 
-The manifest includes the optional
-`extensions.com.openai.interface.websiteURL` presentation field so ChatGPT
-shows Bloom's product website. OpenAI uses this listing field independently of
-the portable `homepage` field. See
+The manifest includes optional OpenAI presentation fields under
+`extensions.com.openai.interface`. `websiteURL` links to Bloom's product
+website, independently of the portable `homepage` field. `logo` and
+`composerIcon` reference `./assets/bloom-logo.png`, Bloom's existing 512×512 app
+icon, for the plugin listing and composer. See
 [OpenAI listing metadata](https://developers.openai.com/plugins/deploy/submission#listing-metadata).
 Clients that do not use the OpenAI extension still discover the same Skill and
 MCP configuration from their portable locations.
@@ -153,7 +155,7 @@ unsupported fields, both exact `1.0.0` schema identifiers, matching plugin,
 Skill-directory, Skill-frontmatter, and MCP-server names, and the remote
 transport and endpoint. It requires `plugin.json`'s version to match the Skill's
 `metadata.version` and the latest numbered changelog release. It also checks the
-OpenAI website field and rejects other client-specific data. Changes under
+OpenAI website and icon paths and rejects other client-specific data. Changes under
 **Unreleased** retain the current shared version until the next release.
 Any release that changes shipped plugin contents updates all three versions
 together.

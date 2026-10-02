@@ -10,6 +10,7 @@ plugin_files=(
   CHANGELOG.md
   LICENSE
   assets/bloom-mcp-og.png
+  assets/bloom-logo.png
 )
 
 fail() {

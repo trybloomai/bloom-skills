@@ -12,7 +12,9 @@
   "extensions": {
     "com.openai": {
       "interface": {
-        "websiteURL": "https://www.trybloom.ai"
+        "websiteURL": "https://www.trybloom.ai",
+        "logo": "./assets/bloom-logo.png",
+        "composerIcon": "./assets/bloom-logo.png"
       }
     }
   }

@@ -21,6 +21,8 @@ For plugin installations, reload an updated plugin directory or local
   byte-identical source files in both distributions.
 - Optional OpenAI website presentation metadata so ChatGPT's plugin details
   link to `https://www.trybloom.ai`, with offline validation of that field.
+- Bloom's existing 512×512 app icon for the plugin listing and composer, with
+  validation of its manifest paths and packaged contents.
 
 ### Changed
 
