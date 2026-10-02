@@ -1,10 +1,36 @@
 # Changelog
 
-All notable changes to the Bloom agent skill. This project follows [Semantic Versioning](https://semver.org).
+All notable changes to the Bloom Skill and Agent Plugin. This project follows [Semantic Versioning](https://semver.org).
 
 After updating, re-run `npx skills update bloom` (local agents) or re-download the
 [latest ZIP](https://github.com/trybloomai/bloom-skills/releases/latest/download/bloom.skill.zip)
 and re-upload it (Claude Desktop, Claude web, Cowork).
+For plugin installations, reload an updated plugin directory or local
+`dist/bloom.plugin.zip` using your client's update flow.
+
+## [Unreleased]
+
+### Added
+
+- Portable Agent Plugins 1.0 packaging in root `plugin.json` and `mcp.json`,
+  using the identifier `bloom` and Bloom's remote Streamable HTTP endpoint
+  `https://mcp.trybloom.ai/mcp`.
+- `dist/bloom.plugin.zip`, built with dependency-free Bash scripts and standard
+  command-line utilities. Offline validation checks JSON, schema versions,
+  matching names, synchronized release versions, exact archive structure, and
+  byte-identical source files in both distributions.
+- Optional OpenAI website presentation metadata so ChatGPT's plugin details
+  link to `https://www.trybloom.ai`, with offline validation of that field.
+
+### Changed
+
+- Documented portable plugin installation, packaging, and validation alongside
+  the existing standalone Skill workflows.
+- Included the plugin ZIP in the tracked distribution files and ignored local
+  `.context/` work files.
+- Retained `bloom-skills` as the repository name and `0.5.0` as the shared
+  package and Skill version. The canonical `skills/bloom/SKILL.md` and existing
+  `dist/bloom.skill.zip` are unchanged.
 
 ## [0.5.0] - 2026-09-24
 

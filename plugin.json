@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "bloom",
+  "version": "0.5.0",
+  "description": "Brand context, Brand creation and editing, and on-brand generation with Bloom.",
+  "author": {
+    "name": "Bloom"
+  },
+  "homepage": "https://docs.trybloom.ai/mcp/getting-started",
+  "repository": "https://github.com/trybloomai/bloom-skills",
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "websiteURL": "https://www.trybloom.ai"
+      }
+    }
+  }
+}
