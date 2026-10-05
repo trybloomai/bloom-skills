@@ -10,6 +10,15 @@ For plugin installations, reload an updated plugin directory or local
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-10-05
+
+### Changed
+
+- Aligned the Bloom Skill introduction with the docs-hosted Skill's description
+  of Bloom as the brand layer for agents, built around shared brand context.
+- Clarified that editing an existing Brand keeps the same Brand session ID,
+  replacing the wording "Brand ID" to match the docs-hosted Skill.
+
 ## [1.0.1] - 2026-10-05
 
 ### Added
