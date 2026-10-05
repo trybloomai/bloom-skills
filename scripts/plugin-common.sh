@@ -28,8 +28,9 @@ require_commands() {
 validate_regular_zip_members() {
   # Info-ZIP's long listing exposes Unix symlinks and other special file types.
   # The package builder writes regular files only; enforce that on read too.
+  # Skip the two header lines, which include the archive path.
   unzip -Z -l "$1" | awk -v expected="$2" '
-    $2 ~ /^[0-9]+\.[0-9]+$/ {
+    NR > 2 && $2 ~ /^[0-9]+\.[0-9]+$/ {
       if ($1 !~ /^-/) exit 1
       files++
     }
@@ -46,16 +47,22 @@ validate_plugin_sources() {
     [[ -d "$repo_root/$file" && ! -L "$repo_root/$file" ]] || fail "Expected a regular source directory: $file"
   done
 
-  # Read only the canonical frontmatter, with version under metadata.
-  skill_metadata="$(awk '
+  # Read only the canonical frontmatter, with version under metadata. Accept
+  # plain, double-quoted, or single-quoted scalar values.
+  skill_metadata="$(awk -v quote="'" '
+    function scalar(text,    first) {
+      first = substr(text, 1, 1)
+      if (length(text) > 1 && (first == "\"" || first == quote) && substr(text, length(text)) == first)
+        return substr(text, 2, length(text) - 2)
+      return text
+    }
     NR == 1 { if ($0 != "---") exit 1; next }
     /^---$/ { closed = 1; exit }
-    /^name: / { name = substr($0, 7); names++ }
+    /^name: / { name = scalar(substr($0, 7)); names++ }
     /^metadata:$/ { metadata = 1; next }
     /^[^ ]/ { metadata = 0 }
     metadata && /^  version: / {
-      version = substr($0, 12)
-      gsub(/^"|"$/, "", version)
+      version = scalar(substr($0, 12))
       versions++
     }
     END {

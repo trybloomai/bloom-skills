@@ -68,7 +68,8 @@ The ZIP contains the same `bloom/SKILL.md` as the repository install.
 ### Portable Agent Plugin
 
 Use the repository root as the plugin directory, or download
-[`bloom.plugin.zip`](dist/bloom.plugin.zip) and extract it into a directory.
+[`bloom.plugin.zip`](https://github.com/trybloomai/bloom-skills/raw/main/dist/bloom.plugin.zip)
+and extract it into a directory.
 Load that directory using a client that supports Agent Plugins 1.0 and the
 `streamable-http` MCP transport. Follow that client's plugin installation and
 OAuth sign-in flow.
@@ -76,14 +77,14 @@ OAuth sign-in flow.
 The portable package contains:
 
 ```text
-plugin.json                 # Identifier: bloom
-mcp.json                    # Bloom MCP over Streamable HTTP
-skills/bloom/SKILL.md        # Canonical Skill, unchanged
+plugin.json              # Identifier: bloom
+mcp.json                 # Bloom MCP over Streamable HTTP
+skills/bloom/SKILL.md    # Canonical Skill
 README.md
 CHANGELOG.md
 LICENSE
 assets/bloom-mcp-og.png
-assets/bloom-logo.png        # Bloom's existing 512×512 app icon
+assets/bloom-logo.png    # Bloom's existing 512×512 app icon
 ```
 
 Both JSON files declare the Agent Plugins `1.0.0` schemas. `mcp.json` defines
@@ -177,8 +178,9 @@ together.
 Archive validation checks ZIP integrity, the exact file list, regular file
 types, and every member byte-for-byte against its source. It also checks the
 existing Skill ZIP's structure and canonical contents. The plugin builder
-validates a temporary archive before replacing `dist/bloom.plugin.zip` and
-preserves the Skill ZIP.
+stages files with fixed modes and timestamps, so unchanged sources rebuild to
+the same bytes with the same `zip` version. It validates a temporary archive
+before replacing `dist/bloom.plugin.zip` and preserves the Skill ZIP.
 
 ## License
 

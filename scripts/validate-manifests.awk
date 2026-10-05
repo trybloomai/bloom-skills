@@ -35,11 +35,14 @@ function string(    result, c, code, low) {
     while (position <= length(document)) {
         c = substr(document, position++, 1)
         if (c == "\"") return result
-        if (c ~ /[[:cntrl:]]/) abort("Control character in JSON string")
+        # JSON forbids raw U+0000 through U+001F; DEL and UTF-8 bytes are allowed.
+        if (c < " ") abort("Control character in JSON string")
         if (c == "\\") {
             c = substr(document, position++, 1)
             if (c == "u") {
                 code = hex4()
+                # Some awks end strings at NUL, so a decoded value could match by prefix.
+                if (code == 0) abort("Unsupported \\u0000 escape")
                 if (code >= 55296 && code <= 56319) {
                     if (substr(document, position, 2) != "\\u") abort("Missing low surrogate")
                     position += 2

@@ -17,10 +17,10 @@ For plugin installations, reload an updated plugin directory or local
 - Portable Agent Plugins 1.0 packaging in root `plugin.json` and `mcp.json`,
   using the identifier `bloom` and Bloom's remote Streamable HTTP endpoint
   `https://mcp.trybloom.ai/mcp`.
-- `dist/bloom.plugin.zip`, built with dependency-free Bash scripts and standard
-  command-line utilities. Offline validation checks JSON, schema versions,
-  matching names, synchronized release versions, exact archive structure, and
-  byte-identical source files in both distributions.
+- `dist/bloom.plugin.zip`, built reproducibly with dependency-free Bash scripts
+  and standard command-line utilities. Offline validation checks JSON, schema
+  versions, matching names, synchronized release versions, exact archive
+  structure, and byte-identical source files in both distributions.
 - Optional OpenAI website presentation metadata so ChatGPT's plugin details
   link to `https://www.trybloom.ai`, with offline validation of that field.
 - Bloom's existing 512×512 app icon for the plugin listing and composer, with
