@@ -1,0 +1,21 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "bloom",
+  "version": "1.0.1",
+  "description": "The brand layer for agents.",
+  "author": {
+    "name": "Bloom"
+  },
+  "homepage": "https://docs.trybloom.ai/mcp/getting-started",
+  "repository": "https://github.com/trybloomai/bloom-skills",
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "websiteURL": "https://www.trybloom.ai",
+        "logo": "./assets/bloom-logo.png",
+        "composerIcon": "./assets/bloom-logo.png"
+      }
+    }
+  }
+}
