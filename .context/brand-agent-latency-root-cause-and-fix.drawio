@@ -1,0 +1,118 @@
+<mxfile host="app.diagrams.net" modified="2026-10-02T00:00:00.000Z" agent="Codex" version="24.7.17" type="device">
+  <diagram id="brand-agent-latency" name="Root cause and proposed fix">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F8FC;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1600" height="900" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="&lt;b&gt;Brand Agent latency: root cause → proposed fix&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=30;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="60" y="32" width="1100" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle" value="Production evidence from PostHog traces, Supabase, and Slack" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=15;fontColor=#6B7280;" vertex="1" parent="1">
+          <mxGeometry x="62" y="79" width="760" height="28" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="rootPanel" value="" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E5E7EB;strokeWidth=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="125" width="720" height="650" as="geometry"/>
+        </mxCell>
+        <mxCell id="rootHeading" value="&lt;b&gt;ROOT CAUSE&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=none;fontColor=#B91C1C;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="80" y="151" width="134" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="rootSummary" value="&lt;b&gt;Viewed/read tool results—not files at rest—accumulate across model turns&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=18;fontColor=#111827;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="230" y="146" width="490" height="45" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="input" value="&lt;b&gt;Uploaded / unknown files&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#6B7280&quot;&gt;Generalized file or mixed run&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#818CF8;strokeWidth=2;fontColor=#312E81;fontSize=15;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="90" y="220" width="180" height="82" as="geometry"/>
+        </mxCell>
+        <mxCell id="retain" value="&lt;b&gt;Sandbox filesystem&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#1E40AF&quot;&gt;&lt;b&gt;inputs/ · read-only&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#6B7280&quot;&gt;Available ≠ in model context&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#60A5FA;strokeWidth=2;dashed=1;fontColor=#1E3A8A;fontSize=15;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="310" y="210" width="210" height="102" as="geometry"/>
+        </mxCell>
+        <mxCell id="context" value="&lt;b&gt;view_files() / execute()&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#6B7280&quot;&gt;Only selected file content or tool output enters model context&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#FB923C;strokeWidth=2;fontColor=#9A3412;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="560" y="210" width="180" height="102" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="turns" value="&lt;b&gt;Tool results remain in history&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#6B7280&quot;&gt;Re-sent across 10–14 sequential Gemini turns&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#F87171;strokeWidth=2;fontColor=#991B1B;fontSize=15;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="460" y="370" width="260" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="fanout" value="&lt;b&gt;Repeated inspection calls&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#6B7280&quot;&gt;Each viewed/read result crosses the boundary into context&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#FB923C;strokeWidth=2;fontColor=#9A3412;fontSize=15;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="370" width="260" height="90" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="modelTime" value="&lt;b&gt;Prompt + model time balloon&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#6B7280&quot;&gt;~26k → ~77k avg input · worst ~235k&lt;br&gt;one call reached ~216s&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FDECEC;strokeColor=#DC2626;strokeWidth=2;fontColor=#7F1D1D;fontSize=15;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="460" y="520" width="260" height="88" as="geometry"/>
+        </mxCell>
+        <mxCell id="validation" value="&lt;b&gt;Tool-result history grows&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#6B7280&quot;&gt;16.2 MB accumulated in one sampled 23-step run&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#FB923C;strokeWidth=2;fontColor=#9A3412;fontSize=15;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="520" width="260" height="88" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="latency" value="&lt;b&gt;End-to-end latency rises&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#FFFFFF&quot;&gt;Website + file: ~128s → ~242s&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#B91C1C;strokeColor=#991B1B;strokeWidth=2;fontColor=#FFFFFF;fontSize=19;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="220" y="660" width="380" height="82" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="fixPanel" value="" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E5E7EB;strokeWidth=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="830" y="125" width="720" height="650" as="geometry"/>
+        </mxCell>
+        <mxCell id="fixHeading" value="&lt;b&gt;PROPOSED FIX&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=none;fontColor=#166534;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="860" y="151" width="150" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="fixSummary" value="&lt;b&gt;Keep files in the sandbox; bound and compact what crosses into context&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=18;fontColor=#111827;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1028" y="146" width="465" height="45" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="dedupe" value="&lt;b&gt;1 · Keep files as references&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#6B7280&quot;&gt;Sandbox paths / asset IDs&lt;br&gt;Do not preload bytes into prompts&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#34D399;strokeWidth=2;fontColor=#065F46;fontSize=16;align=left;verticalAlign=middle;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="875" y="215" width="285" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="cap" value="&lt;b&gt;2 · Filter before viewing&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#6B7280&quot;&gt;Dedupe + rank in the sandbox&lt;br&gt;View only the top-K candidates&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#34D399;strokeWidth=2;fontColor=#065F46;fontSize=16;align=left;verticalAlign=middle;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="215" width="285" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="batch" value="&lt;b&gt;3 · Group inspections&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#6B7280&quot;&gt;Contact sheets or bounded batches&lt;br&gt;No one-model-turn-per-image loop&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#60A5FA;strokeWidth=2;fontColor=#1E40AF;fontSize=16;align=left;verticalAlign=middle;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="875" y="365" width="285" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="compact" value="&lt;b&gt;4 · Compact after viewing&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#6B7280&quot;&gt;Keep a short manifest / summary&lt;br&gt;Stop replaying old media + tool payloads&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#60A5FA;strokeWidth=2;fontColor=#1E40AF;fontSize=16;align=left;verticalAlign=middle;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="365" width="285" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="guard" value="&lt;b&gt;5 · Enforce budgets&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#6B7280&quot;&gt;Token, turn, and wall-clock limits&lt;br&gt;Summarize once before retry&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#A78BFA;strokeWidth=2;fontColor=#5B21B6;fontSize=16;align=left;verticalAlign=middle;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="875" y="515" width="285" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="boundedValidation" value="&lt;b&gt;6 · Validate retained set&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#6B7280&quot;&gt;Parallelize the bounded workload&lt;br&gt;and skip discarded assets&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#A78BFA;strokeWidth=2;fontColor=#5B21B6;fontSize=16;align=left;verticalAlign=middle;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="515" width="285" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="outcome" value="&lt;b&gt;Lower, predictable latency&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#FFFFFF&quot;&gt;Without sacrificing the highest-value source evidence&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#047857;strokeColor=#065F46;strokeWidth=2;fontColor=#FFFFFF;fontSize=19;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="660" width="380" height="82" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#9CA3AF;strokeWidth=2;" edge="1" parent="1" source="input" target="retain"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#F97316;strokeWidth=2;" edge="1" parent="1" source="retain" target="context"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#EF4444;strokeWidth=2;" edge="1" parent="1" source="context" target="turns"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#F97316;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="context" target="fanout">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="340"/>
+              <mxPoint x="230" y="340"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#EF4444;strokeWidth=2;" edge="1" parent="1" source="turns" target="modelTime"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#F97316;strokeWidth=2;" edge="1" parent="1" source="fanout" target="validation"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#DC2626;strokeWidth=3;" edge="1" parent="1" source="modelTime" target="latency"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#F97316;strokeWidth=2;" edge="1" parent="1" source="validation" target="latency"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="f1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#10B981;strokeWidth=2;" edge="1" parent="1" source="dedupe" target="cap"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#3B82F6;strokeWidth=2;" edge="1" parent="1" source="dedupe" target="batch"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#3B82F6;strokeWidth=2;" edge="1" parent="1" source="cap" target="compact"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#6366F1;strokeWidth=2;" edge="1" parent="1" source="batch" target="guard"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#6366F1;strokeWidth=2;" edge="1" parent="1" source="compact" target="boundedValidation"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#059669;strokeWidth=3;" edge="1" parent="1" source="guard" target="outcome"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#059669;strokeWidth=3;" edge="1" parent="1" source="boundedValidation" target="outcome"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="evidence" value="&lt;b&gt;Key distinction:&lt;/b&gt;&amp;nbsp;&amp;nbsp; sandbox storage alone does not enlarge the prompt &amp;nbsp;•&amp;nbsp; only view_files / execute returns cross into model context &amp;nbsp;•&amp;nbsp; queue ≈ 1s" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#D1D5DB;fontColor=#374151;fontSize=15;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="190" y="810" width="1220" height="54" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
