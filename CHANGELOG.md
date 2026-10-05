@@ -10,6 +10,8 @@ For plugin installations, reload an updated plugin directory or local
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-10-05
+
 ### Added
 
 - Portable Agent Plugins 1.0 packaging in root `plugin.json` and `mcp.json`,
@@ -34,9 +36,8 @@ For plugin installations, reload an updated plugin directory or local
   the direct MCP connection path for testing tools on ChatGPT web.
 - Included the plugin ZIP in the tracked distribution files and ignored local
   `.context/` work files.
-- Retained `bloom-skills` as the repository name and `0.5.0` as the shared
-  package and Skill version. The canonical `skills/bloom/SKILL.md` and existing
-  `dist/bloom.skill.zip` are unchanged.
+- Retained `bloom-skills` as the repository name and aligned the portable
+  package, canonical Skill, and both distribution archives at version `1.0.1`.
 
 ## [0.5.0] - 2026-09-24
 
