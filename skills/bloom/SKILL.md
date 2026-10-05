@@ -4,17 +4,20 @@ description: Use Bloom to assess or integrate brand context, create Brands, edit
 license: MIT
 metadata:
   author: Bloom
-  version: "1.0.1"
+  version: "1.0.2"
   url: https://docs.trybloom.ai/mcp/getting-started
 ---
 
 # Use Bloom
 
-Bloom is the brand layer: one place where a brand lives and evolves. Give it a
-website, social media, brand guides, briefs, logos, or other brand material.
-Bloom turns that context into a versioned Brand Skill—structured data and clear
-guidance that agents, applications, and people can use. As the brand changes,
-Bloom can publish a new version while keeping the brand itself in one place.
+Bloom is the brand layer for agents. It turns a brand's identity, guidance,
+and assets into shared context that agents and products can use. That context
+evolves with the brand, alongside the tools where it is created and managed.
+
+Start with a website, social media, brand guides, briefs, logos, or other brand
+material. Bloom turns that context into a versioned Brand Skill: structured
+data and clear guidance that connected systems can use and update through the
+API or MCP.
 
 A Brand Skill can equip any capable system creating on the brand's behalf,
 whether it is making images, slides, websites, video, documents, or something
@@ -85,7 +88,7 @@ formats itself.
 
 Brand creation establishes a new Brand from source material. Brand editing
 revises an existing Brand's identity, guidance, or Brand Skill files while
-keeping the same Brand ID. When the user asks to change an existing Brand, read
+keeping the same Brand session ID. When the user asks to change an existing Brand, read
 its current Brand Skill and prepare an edit by default. Onboard a new Brand only
 when the user explicitly wants a separate Brand.
 
