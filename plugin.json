@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "bloom",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "The brand layer for agents.",
   "author": {
     "name": "Bloom"
@@ -12,9 +12,78 @@
   "extensions": {
     "com.openai": {
       "interface": {
-        "websiteURL": "https://www.trybloom.ai",
+        "displayName": "Bloom",
+        "shortDescription": "The brand layer for agents.",
+        "longDescription": "Bloom is the brand layer for agents. It turns a brand's identity, guidance, and assets into shared context that agents and products can use and update as the brand evolves.\n\nConnect your Bloom account to find accessible brands, retrieve their current context, and inspect account, workspace, and credit information. Versioned Brand Skills provide structured profiles, written guidance, and asset references for recurring brand work across connected systems.\n\nBloom also supports creating and updating brand context, brand-aware image generation, and selected image, video, audio, and SVG models. Connected agents and products can apply the same brand context to their own work.",
+        "developerName": "Bloom",
+        "category": "Business & Operations",
+        "capabilities": [
+          "Brand context and Brand Skills",
+          "Brand creation and updates",
+          "Account and workspace information",
+          "Workspace credit balances",
+          "Brand-aware image generation",
+          "Selected image, video, audio, and SVG models"
+        ],
+        "websiteURL": "https://www.trybloom.ai/",
+        "supportURL": "https://www.trybloom.ai/faq/",
+        "privacyPolicyURL": "https://www.trybloom.ai/privacy/",
+        "termsOfServiceURL": "https://www.trybloom.ai/terms/",
         "logo": "./assets/bloom-logo.png",
         "composerIcon": "./assets/bloom-logo.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "List the brands accessible to the connected Bloom account.",
+              "prompt": "Show me the brands I can access in Bloom.",
+              "tools_triggered": "bloom_list_brands",
+              "expected_behavior": "Returns accessible brands with their names, statuses, workspaces, and Brand session IDs."
+            },
+            {
+              "description": "Retrieve the current brand context for an existing Stripe brand.",
+              "prompt": "Get the current brand context for my Stripe brand in Bloom.",
+              "tools_triggered": "bloom_list_brands, bloom_get_brand",
+              "expected_behavior": "Resolves the accessible Stripe brand, then returns its current status, profile, root guidance, navigation, files, and version metadata."
+            },
+            {
+              "description": "Identify the Bloom account connected to the conversation.",
+              "prompt": "Which Bloom account am I connected to?",
+              "tools_triggered": "bloom_get_account",
+              "expected_behavior": "Returns the authenticated account's email address and name."
+            },
+            {
+              "description": "List the workspaces accessible to the connected Bloom account.",
+              "prompt": "Which Bloom workspaces can I access?",
+              "tools_triggered": "bloom_list_workspaces",
+              "expected_behavior": "Returns the personal workspace first, followed by other accessible workspaces, with their IDs and names."
+            },
+            {
+              "description": "Check the remaining credits in the account's personal workspace.",
+              "prompt": "How many Bloom credits are left in my personal workspace?",
+              "tools_triggered": "bloom_list_workspaces, bloom_check_credits",
+              "expected_behavior": "Resolves the personal workspace, then returns its name, credit balance, and unlimited or paused status as applicable."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Give general brand and design advice without accessing Bloom.",
+              "prompt": "What makes a brand's visual identity consistent across different channels?"
+            },
+            {
+              "description": "Request social publishing and scheduling, which Bloom does not perform.",
+              "prompt": "Publish my latest post to Instagram and schedule it for tomorrow morning."
+            },
+            {
+              "description": "Ask for a weather forecast unrelated to Bloom.",
+              "prompt": "What will the weather be in Seattle tomorrow?"
+            }
+          ]
+        }
+      },
+      "publication": {
+        "release_notes": "Version 1.0.3 adds complete OpenAI listing metadata, support and legal URLs, and five read-only review cases covering brands, brand context, account details, workspaces, and credits, plus three negative cases. The release uses the normal portable Agent Plugins 1.0 package. Reviewer credentials remain in the submission dashboard."
       }
     }
   }

@@ -10,6 +10,24 @@ For plugin installations, reload an updated plugin directory or local
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-10-06
+
+### Added
+
+- Complete OpenAI listing metadata, including the display name, descriptions,
+  developer name, category, capabilities, and support, privacy policy, and terms
+  of service URLs.
+- Five read-only review cases covering accessible brands, current brand context,
+  the connected account, accessible workspaces, and remaining credits, plus
+  three negative cases.
+- Release notes in the manifest for import into the OpenAI submission dashboard.
+
+### Changed
+
+- Expanded package validation to cover the OpenAI listing and review metadata.
+- Documented how the portable package supplies submission metadata while
+  reviewer credentials remain in the submission dashboard.
+
 ## [1.0.2] - 2026-10-05
 
 ### Changed

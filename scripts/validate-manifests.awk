@@ -132,6 +132,25 @@ function exact(node, key, expected) {
     if (values[member(node, key, "string")] != expected) abort(key " must equal " expected)
 }
 
+function required_string(node, key, label, maximum,    item, text) {
+    item = member(node, key, "string")
+    text = values[item]
+    if (text == "") abort(label " must not be empty")
+    if (maximum && length(text) > maximum) abort(label " exceeds " maximum " characters")
+    return text
+}
+
+function string_array(node, label, maximum_items, maximum_length,    i, item) {
+    type(node, "array", label)
+    if (size[node] > maximum_items) abort(label " contains too many entries")
+    for (i = 1; i <= size[node]; i++) {
+        item = children[node, i]
+        type(item, "string", label " entry")
+        if (values[item] == "") abort(label " entries must not be empty")
+        if (length(values[item]) > maximum_length) abort(label " entry exceeds " maximum_length " characters")
+    }
+}
+
 { document = document $0 "\n" }
 
 END {
@@ -144,17 +163,61 @@ END {
         exact(root, "$schema", "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json")
         exact(root, "name", expected_name)
         exact(root, "version", expected_version)
-        # Ship only the requested ChatGPT website and logo presentation fields.
-        # Keep their namespace closed and require the packaged image path.
+        # Keep OpenAI submission metadata inside the portable extension so the
+        # normal Agent Plugins archive remains the only package to release.
         extensions = member(root, "extensions", "object")
         closed(extensions, "com.openai", "extensions")
         openai = member(extensions, "com.openai", "object")
-        closed(openai, "interface", "com.openai")
+        closed(openai, "interface review publication", "com.openai")
+
         interface = member(openai, "interface", "object")
-        closed(interface, "websiteURL logo composerIcon", "com.openai.interface")
-        exact(interface, "websiteURL", "https://www.trybloom.ai")
+        closed(interface, "displayName shortDescription longDescription developerName category capabilities websiteURL supportURL privacyPolicyURL termsOfServiceURL logo composerIcon", "com.openai.interface")
+        exact(interface, "displayName", "Bloom")
+        exact(interface, "shortDescription", "The brand layer for agents.")
+        exact(interface, "developerName", "Bloom")
+        exact(interface, "category", "Business & Operations")
+        required_string(interface, "longDescription", "longDescription", 4000)
+        string_array(member(interface, "capabilities", "array"), "capabilities", 20, 120)
+        exact(interface, "websiteURL", "https://www.trybloom.ai/")
+        exact(interface, "supportURL", "https://www.trybloom.ai/faq/")
+        exact(interface, "privacyPolicyURL", "https://www.trybloom.ai/privacy/")
+        exact(interface, "termsOfServiceURL", "https://www.trybloom.ai/terms/")
         exact(interface, "logo", "./assets/bloom-logo.png")
         exact(interface, "composerIcon", "./assets/bloom-logo.png")
+
+        review = member(openai, "review", "object")
+        closed(review, "test_cases", "com.openai.review")
+        test_cases = member(review, "test_cases", "object")
+        closed(test_cases, "positive negative", "review.test_cases")
+        positive = member(test_cases, "positive", "array")
+        negative = member(test_cases, "negative", "array")
+        if (size[positive] != 5) abort("review.test_cases.positive must contain exactly five cases")
+        if (size[negative] != 3) abort("review.test_cases.negative must contain exactly three cases")
+        expected_tools[1] = "bloom_list_brands"
+        expected_tools[2] = "bloom_list_brands, bloom_get_brand"
+        expected_tools[3] = "bloom_get_account"
+        expected_tools[4] = "bloom_list_workspaces"
+        expected_tools[5] = "bloom_list_workspaces, bloom_check_credits"
+        for (i = 1; i <= size[positive]; i++) {
+            item = children[positive, i]
+            closed(item, "description prompt tools_triggered expected_behavior", "positive review case")
+            required_string(item, "description", "positive review description", 4000)
+            required_string(item, "prompt", "positive review prompt", 0)
+            required_string(item, "expected_behavior", "positive expected behavior", 0)
+            if (required_string(item, "tools_triggered", "positive tools_triggered", 0) != expected_tools[i])
+                abort("Unexpected tools_triggered value in positive review case " i)
+        }
+        for (i = 1; i <= size[negative]; i++) {
+            item = children[negative, i]
+            closed(item, "description prompt", "negative review case")
+            required_string(item, "description", "negative review description", 0)
+            required_string(item, "prompt", "negative review prompt", 0)
+        }
+
+        publication = member(openai, "publication", "object")
+        closed(publication, "release_notes", "com.openai.publication")
+        required_string(publication, "release_notes", "release_notes", 0)
+
         for (i = 1; i <= size[root]; i++) {
             key = keys[root, i]
             item = children[root, key]
