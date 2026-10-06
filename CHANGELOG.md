@@ -10,6 +10,14 @@ For plugin installations, reload an updated plugin directory or local
 
 ## [Unreleased]
 
+## [1.0.4] - 2026-10-06
+
+### Changed
+
+- Changed the OpenAI directory category from Business & Operations to Creativity
+  to better reflect Bloom's brand-focused creative workflows.
+- Aligned package versions and release metadata at 1.0.4.
+
 ## [1.0.3] - 2026-10-06
 
 ### Added
