@@ -10,6 +10,16 @@ For plugin installations, reload an updated plugin directory or local
 
 ## [Unreleased]
 
+## [1.0.5] - 2026-10-06
+
+### Changed
+
+- Updated the personal-workspace credit review case to expect only
+  `bloom_check_credits`.
+- Replaced the three negative review cases with unrelated exchange-rate,
+  weather, and arithmetic questions that should invoke no Bloom tools.
+- Aligned package versions and release metadata at 1.0.5.
+
 ## [1.0.4] - 2026-10-06
 
 ### Changed

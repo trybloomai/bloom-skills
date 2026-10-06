@@ -197,7 +197,10 @@ END {
         expected_tools[2] = "bloom_list_brands, bloom_get_brand"
         expected_tools[3] = "bloom_get_account"
         expected_tools[4] = "bloom_list_workspaces"
-        expected_tools[5] = "bloom_list_workspaces, bloom_check_credits"
+        expected_tools[5] = "bloom_check_credits"
+        expected_negative_prompts[1] = "What is the current USD/EUR exchange rate?"
+        expected_negative_prompts[2] = "What is the weather in Tokyo today?"
+        expected_negative_prompts[3] = "What is 17 + 25?"
         for (i = 1; i <= size[positive]; i++) {
             item = children[positive, i]
             closed(item, "description prompt tools_triggered expected_behavior", "positive review case")
@@ -211,7 +214,8 @@ END {
             item = children[negative, i]
             closed(item, "description prompt", "negative review case")
             required_string(item, "description", "negative review description", 0)
-            required_string(item, "prompt", "negative review prompt", 0)
+            if (required_string(item, "prompt", "negative review prompt", 0) != expected_negative_prompts[i])
+                abort("Unexpected prompt in negative review case " i)
         }
 
         publication = member(openai, "publication", "object")
