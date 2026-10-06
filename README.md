@@ -92,11 +92,15 @@ one server named `bloom` at `https://mcp.trybloom.ai/mcp`. OAuth discovery and
 credential storage belong to the client; the package contains no credentials.
 The ZIP has these files directly at its root, with no enclosing directory.
 
-The manifest includes optional OpenAI presentation fields under
-`extensions.com.openai.interface`. `websiteURL` links to Bloom's product
-website, independently of the portable `homepage` field. `logo` and
-`composerIcon` reference `./assets/bloom-logo.png`, Bloom's existing 512×512 app
-icon, for the plugin listing and composer. See
+The portable manifest includes complete OpenAI listing metadata under
+`extensions.com.openai.interface`: the display name, descriptions, developer
+name, category, capabilities, and website, support, privacy policy, and terms
+of service URLs. `websiteURL` is separate from the portable `homepage` field.
+`logo` and `composerIcon` reference `./assets/bloom-logo.png`, Bloom's existing
+512×512 app icon. The OpenAI extension also supplies five read-only review
+cases, three negative cases, and release notes for import into the submission
+dashboard. Enter reviewer credentials in that dashboard; they are not included
+in the package. See
 [OpenAI listing metadata](https://developers.openai.com/plugins/deploy/submission#listing-metadata).
 Clients that do not use the OpenAI extension still discover the same Skill and
 MCP configuration from their portable locations.
@@ -169,9 +173,10 @@ The Bloom-specific validator parses JSON and checks field types, duplicate and
 unsupported fields, both exact `1.0.0` schema identifiers, matching plugin,
 Skill-directory, Skill-frontmatter, and MCP-server names, and the remote
 transport and endpoint. It requires `plugin.json`'s version to match the Skill's
-`metadata.version` and the latest numbered changelog release. It also checks the
-OpenAI website and icon paths and rejects other client-specific data. Changes under
-**Unreleased** retain the current shared version until the next release.
+`metadata.version` and the latest numbered changelog release. It also validates
+the OpenAI listing and review metadata, including required URLs, icon paths, and
+test cases. Changes under **Unreleased** retain the current shared version until
+the next release.
 Any release that changes shipped plugin contents updates all three versions
 together.
 
