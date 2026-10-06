@@ -186,7 +186,8 @@ END {
         exact(interface, "composerIcon", "./assets/bloom-logo.png")
 
         review = member(openai, "review", "object")
-        closed(review, "test_cases", "com.openai.review")
+        closed(review, "test_cases demo_recording_url", "com.openai.review")
+        exact(review, "demo_recording_url", "https://github.com/trybloomai/bloom-skills/releases/download/v1.0.6/bloom-plugin-walkthrough.mp4")
         test_cases = member(review, "test_cases", "object")
         closed(test_cases, "positive negative", "review.test_cases")
         positive = member(test_cases, "positive", "array")
@@ -194,7 +195,7 @@ END {
         if (size[positive] != 5) abort("review.test_cases.positive must contain exactly five cases")
         if (size[negative] != 3) abort("review.test_cases.negative must contain exactly three cases")
         expected_tools[1] = "bloom_list_brands"
-        expected_tools[2] = "bloom_list_brands, bloom_get_brand"
+        expected_tools[2] = "bloom_get_brand"
         expected_tools[3] = "bloom_get_account"
         expected_tools[4] = "bloom_list_workspaces"
         expected_tools[5] = "bloom_check_credits"

@@ -4,7 +4,7 @@ description: Use Bloom to assess or integrate brand context, create Brands, edit
 license: MIT
 metadata:
   author: Bloom
-  version: "1.0.5"
+  version: "1.0.6"
   url: https://docs.trybloom.ai/mcp/getting-started
 ---
 

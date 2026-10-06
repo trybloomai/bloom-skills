@@ -10,6 +10,15 @@ For plugin installations, reload an updated plugin directory or local
 
 ## [Unreleased]
 
+## [1.0.6] - 2026-10-06
+
+### Changed
+
+- Aligned the Stripe brand-context review case with the recorded direct
+  `bloom_get_brand` call.
+- Added the reviewer-accessible walkthrough recording to the plugin metadata.
+- Aligned package versions and release metadata at 1.0.6.
+
 ## [1.0.5] - 2026-10-06
 
 ### Changed

@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "bloom",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "The brand layer for agents.",
   "author": {
     "name": "Bloom"
@@ -44,8 +44,8 @@
             {
               "description": "Retrieve the current brand context for an existing Stripe brand.",
               "prompt": "Get the current brand context for my Stripe brand in Bloom.",
-              "tools_triggered": "bloom_list_brands, bloom_get_brand",
-              "expected_behavior": "Resolves the accessible Stripe brand, then returns its current status, profile, root guidance, navigation, files, and version metadata."
+              "tools_triggered": "bloom_get_brand",
+              "expected_behavior": "Returns the accessible Stripe brand's current status, profile, root guidance, navigation, files, and version metadata."
             },
             {
               "description": "Identify the Bloom account connected to the conversation.",
@@ -80,10 +80,11 @@
               "prompt": "What is 17 + 25?"
             }
           ]
-        }
+        },
+        "demo_recording_url": "https://github.com/trybloomai/bloom-skills/releases/download/v1.0.6/bloom-plugin-walkthrough.mp4"
       },
       "publication": {
-        "release_notes": "Version 1.0.5 updates the submission review cases: the personal-workspace credit check expects only bloom_check_credits, and the three negative cases cover exchange rates, weather, and arithmetic without invoking Bloom tools. The normal portable Agent Plugins 1.0 package retains five positive read-only cases and three negative cases. Bloom's tools, authentication, and listing metadata are unchanged."
+        "release_notes": "Updated submission review materials and walkthrough."
       }
     }
   }
