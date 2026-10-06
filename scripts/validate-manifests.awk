@@ -175,7 +175,7 @@ END {
         exact(interface, "displayName", "Bloom")
         exact(interface, "shortDescription", "The brand layer for agents.")
         exact(interface, "developerName", "Bloom")
-        exact(interface, "category", "Business & Operations")
+        exact(interface, "category", "Creativity")
         required_string(interface, "longDescription", "longDescription", 4000)
         string_array(member(interface, "capabilities", "array"), "capabilities", 20, 120)
         exact(interface, "websiteURL", "https://www.trybloom.ai/")
