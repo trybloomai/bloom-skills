@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Rainbrand
   version: "1.1.0"
-  url: https://www.rainbrand.com/
+  url: https://docs.rainbrand.com/mcp/getting-started
 ---
 
 # Use Rainbrand
@@ -37,32 +37,32 @@ install a customer's Brand Skill.
 
 ## Choose API or MCP
 
-- Use **MCP** for live work in an interactive agent client. Connect
-  `https://mcp.rainbrand.com/mcp` with Streamable HTTP, complete OAuth sign-in,
-  and discover the live tools and schemas available to the connected account.
+- Use **MCP** for live work in an interactive agent client. Start with the
+  [MCP quickstart](https://docs.rainbrand.com/mcp/getting-started) to connect and
+  sign in.
 - Use the **API** for an application, backend, pipeline, or deterministic
-  automation. Consult the [Rainbrand FAQ](https://www.rainbrand.com/faq/) for
-  integration guidance and obtain a current, verified Rainbrand OpenAPI
-  specification before constructing requests.
+  automation. Start with the [API quickstart](https://docs.rainbrand.com/api) and
+  use the live OpenAPI specification for exact contracts.
 
 Brand Skill retrieval is a workflow through those interfaces, not a third way
 to connect to Rainbrand.
 
 ## Work from current contracts
 
-Before constructing a request or tool call, read its current contract. Use the
-[Rainbrand website](https://www.rainbrand.com/) and
-[FAQ](https://www.rainbrand.com/faq/) for product information and support.
+Before constructing a request or tool call, read the relevant public guide and
+its current contract:
 
-Do not copy fields or tool names from memory. The current, verified Rainbrand
-OpenAPI specification owns the public REST contract. For MCP, the connected
-account's live `tools/list` response owns the tools and schemas available in
-that session; rollout-gated MCP capabilities do not automatically become public
-API contracts. If a current API contract is unavailable, obtain it before
-integrating rather than inferring REST requests from MCP tools.
+- [Documentation map](https://docs.rainbrand.com/llms.txt)
+- [API contract](https://www.rainbrand.com/api/v1/spec.json)
+- [MCP setup and discovery](https://docs.rainbrand.com/mcp/getting-started)
 
-Treat API behavior absent from the current public guidance and verified OpenAPI
-contract as unsupported.
+Do not copy fields or tool names from memory. The OpenAPI specification owns
+the public REST contract. For MCP, the connected account's live tool list owns
+the tools and schemas available in that session; rollout-gated MCP capabilities
+do not automatically become public API contracts.
+
+Treat API behavior absent from the current public docs and OpenAPI contract as
+unsupported.
 
 ## Use the brand context
 
@@ -99,8 +99,8 @@ even an exact logo, palette, or font request can also update related Markdown.
 Use the proposed changes and, where useful, complete file reads to inspect the
 candidate at a depth appropriate to the task and the authority delegated to you.
 You can answer clarification, refine the candidate, apply it, or discard it.
-Only Apply activates the candidate. Follow the live MCP tool schemas or current,
-verified API contract for the edit workflow.
+Only Apply activates the candidate. See
+[Edit a brand](https://docs.rainbrand.com/guides/edit-brand) for the workflow.
 
 ## Finish asynchronous work
 
@@ -121,7 +121,7 @@ indefinitely.
   Do not casually repeat the brand's palette, typography, era, or named style in
   the image prompt. Rainbrand applies the current Brand Skill itself, and
   restating that identity can compete with it. Use reference images when they
-  materially help the requested result, following the current contract or live
+  materially help the requested result, following the current guide or live
   tool schema.
 
 - **Create with a chosen model:** When the request calls for a selected model or

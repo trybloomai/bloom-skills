@@ -96,7 +96,7 @@ validate_plugin_sources() {
       versions++
     }
     metadata && /^  author: / { if (scalar(substr($0, 11)) != "Rainbrand") exit 1; authors++ }
-    metadata && /^  url: / { if (scalar(substr($0, 8)) != "https://www.rainbrand.com/") exit 1; urls++ }
+    metadata && /^  url: / { if (scalar(substr($0, 8)) != "https://docs.rainbrand.com/mcp/getting-started") exit 1; urls++ }
     END {
       if (!closed || names != 1 || versions != 1 || descriptions != 1 || licenses != 1 || authors != 1 || urls != 1 || name == "" || version == "") exit 1
       print name
