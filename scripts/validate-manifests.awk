@@ -1,4 +1,4 @@
-# Offline checks for Bloom's portable Agent Plugins 1.0.0 profile.
+# Offline checks for Rainbrand's portable Agent Plugins 1.0.0 profile.
 # Uses POSIX awk, not a general JSON Schema engine. Parse JSON before checking
 # types and the closed field sets used here; reject duplicate object keys.
 # Contract: https://agent-plugins.org/specification
@@ -158,11 +158,24 @@ END {
     root = value()
     whitespace()
     if (position <= length(document)) abort("Trailing data after JSON document")
+    # Check decoded strings too, so JSON Unicode escapes cannot hide prior
+    # presentation or service URLs from the source-level text check.
+    for (node in values) {
+        text = tolower(values[node])
+        if (text ~ /(^|[^a-z0-9])bloom([^a-z0-9]|$)|trybloom[.]ai/)
+            abort("Prior branding or endpoint in JSON string")
+    }
     if (kind == "plugin") {
         closed(root, "$schema name version description author homepage repository license keywords extensions", "plugin.json")
         exact(root, "$schema", "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json")
         exact(root, "name", expected_name)
         exact(root, "version", expected_version)
+        exact(root, "homepage", "https://www.rainbrand.com/")
+        if (root SUBSEP "repository" in children)
+            exact(root, "repository", "https://github.com/trybloomai/rainbrand-skills")
+        exact(root, "license", "MIT")
+        required_string(root, "description", "description", 0)
+        exact(member(root, "author", "object"), "name", "Rainbrand")
         # Keep OpenAI submission metadata inside the portable extension so the
         # normal Agent Plugins archive remains the only package to release.
         extensions = member(root, "extensions", "object")
@@ -172,33 +185,40 @@ END {
 
         interface = member(openai, "interface", "object")
         closed(interface, "displayName shortDescription longDescription developerName category capabilities websiteURL supportURL privacyPolicyURL termsOfServiceURL logo composerIcon", "com.openai.interface")
-        exact(interface, "displayName", "Bloom")
+        exact(interface, "displayName", "Rainbrand")
         exact(interface, "shortDescription", "The brand layer for agents.")
-        exact(interface, "developerName", "Bloom")
+        exact(interface, "developerName", "Rainbrand")
         exact(interface, "category", "Creativity")
         required_string(interface, "longDescription", "longDescription", 4000)
         string_array(member(interface, "capabilities", "array"), "capabilities", 20, 120)
-        exact(interface, "websiteURL", "https://www.trybloom.ai/")
-        exact(interface, "supportURL", "https://www.trybloom.ai/faq/")
-        exact(interface, "privacyPolicyURL", "https://www.trybloom.ai/privacy/")
-        exact(interface, "termsOfServiceURL", "https://www.trybloom.ai/terms/")
-        exact(interface, "logo", "./assets/bloom-logo.png")
-        exact(interface, "composerIcon", "./assets/bloom-logo.png")
+        exact(interface, "websiteURL", "https://www.rainbrand.com/")
+        exact(interface, "supportURL", "https://www.rainbrand.com/faq/")
+        exact(interface, "privacyPolicyURL", "https://www.rainbrand.com/privacy/")
+        exact(interface, "termsOfServiceURL", "https://www.rainbrand.com/terms/")
+        if (has_artwork || (interface SUBSEP "logo" in children) || (interface SUBSEP "composerIcon" in children)) {
+            if (!has_artwork) abort("Listing icons require approved assets/rainbrand-logo.png")
+            exact(interface, "logo", "./assets/rainbrand-logo.png")
+            exact(interface, "composerIcon", "./assets/rainbrand-logo.png")
+        } else if (submission) abort("Submission blocked: approved Rainbrand artwork is required")
 
         review = member(openai, "review", "object")
         closed(review, "test_cases demo_recording_url", "com.openai.review")
-        exact(review, "demo_recording_url", "https://github.com/trybloomai/bloom-skills/releases/download/v1.0.6/bloom-plugin-walkthrough.mp4")
+        if (review SUBSEP "demo_recording_url" in children) {
+            recording_url = required_string(review, "demo_recording_url", "demo_recording_url", 0)
+            if (recording_url !~ /^https:\/\/[^\/?#[:space:]@\\]+([\/?#][^[:space:]\\]*)?$/)
+                abort("demo_recording_url must be an HTTPS URL without whitespace or credentials")
+        } else if (submission) abort("Submission blocked: record and upload the Rainbrand walkthrough, then add demo_recording_url")
         test_cases = member(review, "test_cases", "object")
         closed(test_cases, "positive negative", "review.test_cases")
         positive = member(test_cases, "positive", "array")
         negative = member(test_cases, "negative", "array")
         if (size[positive] != 5) abort("review.test_cases.positive must contain exactly five cases")
         if (size[negative] != 3) abort("review.test_cases.negative must contain exactly three cases")
-        expected_tools[1] = "bloom_list_brands"
-        expected_tools[2] = "bloom_get_brand"
-        expected_tools[3] = "bloom_get_account"
-        expected_tools[4] = "bloom_list_workspaces"
-        expected_tools[5] = "bloom_check_credits"
+        expected_tools[1] = "list_brands"
+        expected_tools[2] = "get_brand"
+        expected_tools[3] = "get_account"
+        expected_tools[4] = "list_workspaces"
+        expected_tools[5] = "check_credits"
         expected_negative_prompts[1] = "What is the current USD/EUR exchange rate?"
         expected_negative_prompts[2] = "What is the weather in Tokyo today?"
         expected_negative_prompts[3] = "What is 17 + 25?"
@@ -240,8 +260,8 @@ END {
         servers = member(root, "mcpServers", "object")
         if (size[servers] != 1 || !(servers SUBSEP expected_name in children)) abort("Expected exactly one MCP server named " expected_name)
         server = member(servers, expected_name, "object")
-        closed(server, "type url", "Bloom MCP server")
+        closed(server, "type url", "Rainbrand MCP server")
         exact(server, "type", "streamable-http")
-        exact(server, "url", "https://mcp.trybloom.ai/mcp")
+        exact(server, "url", "https://mcp.rainbrand.com/mcp")
     } else abort("Unknown validation profile")
 }
