@@ -2,28 +2,19 @@
 
 set -euo pipefail
 
-repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-skill_dir="$repo_root/skills/bloom"
-archive="$repo_root/dist/bloom.skill.zip"
-check_dir="$(mktemp -d)"
+source "$(dirname "${BASH_SOURCE[0]}")/plugin-common.sh"
+require_commands awk zip unzip cmp sort mktemp
+validate_plugin_sources
+package_dir="$(mktemp -d "${TMPDIR:-/tmp}/rainbrand-skill.XXXXXX")"
+candidate="$package_dir/rainbrand.skill.zip"
+archive="$repo_root/dist/rainbrand.skill.zip"
 
-trap 'rm -rf "$check_dir"' EXIT
+trap 'rm -rf "$package_dir"' EXIT
 
+build_deterministic_zip "$repo_root/skills" "$package_dir/stage" "$candidate" "${skill_files[@]}"
+mkdir -p "$package_dir/check"
+validate_zip_contents "$candidate" "$repo_root/skills" "$package_dir/check" "${skill_files[@]}"
 mkdir -p "$repo_root/dist"
-rm -f "$archive"
-
-description="$(sed -n 's/^description: //p' "$skill_dir/SKILL.md" | head -n 1)"
-if (( ${#description} > 200 )); then
-  echo "Skill description exceeds Claude's 200-character limit" >&2
-  exit 1
-fi
-
-(
-  cd "$repo_root/skills"
-  zip -X -q "$archive" bloom/SKILL.md
-)
-
-unzip -q "$archive" -d "$check_dir"
-cmp "$skill_dir/SKILL.md" "$check_dir/bloom/SKILL.md"
+mv "$candidate" "$archive"
 
 echo "Packaged $archive"

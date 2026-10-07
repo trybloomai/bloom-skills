@@ -1,191 +1,223 @@
-<div align="center">
+# Rainbrand Skill and Agent Plugin
 
-<img src="assets/bloom-mcp-og.png" alt="Bloom — the brand layer, callable from anywhere" width="100%" />
+Rainbrand is the brand layer for agents. It turns a brand's identity, guidance,
+and assets into shared context that agents and products can use and update as
+the brand evolves, alongside the tools where it is created and managed.
 
-# Bloom Skill and Agent Plugin
+This repository maintains one optional Agent Skill and packages it with
+Rainbrand's remote Model Context Protocol (MCP) connection as an
+[Agent Plugins 1.0](https://agent-plugins.org/specification) plugin. Both use
+the identifier `rainbrand`.
 
-Persistent guidance and a portable MCP connection for agents working with Bloom.
-
-</div>
-
-Bloom is the brand layer: one place where a brand lives and evolves. It turns
-websites, social media, brand guides, briefs, logos, and other brand material
-into versioned Brand Skills that agents, applications, and people can use.
-
-A Brand Skill can guide any capable system creating on the brand's behalf,
-whether it is making images, slides, websites, video, documents, or something
-else. Bloom can generate on-brand images, video, audio, and SVG; for other work,
-Bloom supplies the brand context and the connected system creates the output.
-
-The `bloom-skills` repository contains one optional Agent Skill that teaches an
-agent what Bloom is, when to use it, and whether a workflow belongs on the API
-or MCP. It also packages that same Skill with Bloom's remote MCP configuration
-as an [Agent Plugins 1.0](https://agent-plugins.org/specification) plugin named
-`bloom`.
-
-> A Bloom Skill teaches an agent how and when to use Bloom.
->
-> A Brand Skill contains the context for one particular brand.
-
-The standalone Skill supplies guidance. The plugin also declares the MCP
-connection; the client handles authentication. API and MCP remain the execution
-paths.
+The Rainbrand Skill teaches an agent when and how to use Rainbrand. A Brand
+Skill contains the context for one particular brand. Installing the standalone
+Skill supplies guidance; the plugin also declares the MCP connection. The
+client handles authentication.
 
 ## Install
 
-Install in the current project so the guidance is reviewable and shared with
-the repository:
+From this checkout, install the Skill in the current project:
 
 ```bash
-npx skills add https://docs.trybloom.ai --skill bloom
+npx skills add . --skill rainbrand
 ```
 
-Bloom's documentation hosts the same Skill as this repository. To install
-directly from its source instead, run
-`npx skills add trybloomai/bloom-skills --skill bloom`.
-
-Use `--global` when you deliberately want Bloom guidance across unrelated
-projects:
+The public repository is awaiting its rename to `trybloomai/rainbrand-skills`.
+The following commands become available **after Tomas renames the repository**:
 
 ```bash
-npx skills add https://docs.trybloom.ai --skill bloom --global
+npx skills add trybloomai/rainbrand-skills --skill rainbrand
+npx skills add trybloomai/rainbrand-skills --skill rainbrand --global
+npx skills use trybloomai/rainbrand-skills@rainbrand
 ```
 
-To use the Skill for one session without installing it:
+Prefer a project installation so the guidance is reviewable with the project.
+Use `--global` deliberately for guidance across unrelated projects, or
+`skills use` for one session.
 
-```bash
-npx skills use trybloomai/bloom-skills@bloom
-```
+### Standalone Skill upload
 
-### Upload to Claude
+The local [dist/rainbrand.skill.zip](dist/rainbrand.skill.zip) contains the
+canonical Skill as `rainbrand/SKILL.md`. Upload that archive through Claude's
+Skill upload flow.
 
-Download
-[`bloom.skill.zip`](https://github.com/trybloomai/bloom-skills/releases/latest/download/bloom.skill.zip),
-then in Claude choose **Customize → Skills → Create skill → Upload a skill**.
+The public
+[v1.1.0 Skill download](https://github.com/trybloomai/rainbrand-skills/releases/download/v1.1.0/rainbrand.skill.zip)
+is available **only after the repository rename and publication of the new
+release assets**.
 
-The ZIP contains the same `bloom/SKILL.md` as the repository install.
+### Portable plugin
 
-### Portable Agent Plugin
-
-Use the repository root as the plugin directory, or download
-[`bloom.plugin.zip`](https://github.com/trybloomai/bloom-skills/raw/main/dist/bloom.plugin.zip)
-and extract it into a directory.
-Load that directory using a client that supports Agent Plugins 1.0 and the
-`streamable-http` MCP transport. Follow that client's plugin installation and
+Use this repository root as the plugin directory, or extract the local
+[dist/rainbrand.plugin.zip](dist/rainbrand.plugin.zip). Load it in a client
+that supports Agent Plugins 1.0 and Streamable HTTP, then follow the client's
 OAuth sign-in flow.
 
-The portable package contains:
+The public
+[v1.1.0 plugin download](https://github.com/trybloomai/rainbrand-skills/releases/download/v1.1.0/rainbrand.plugin.zip)
+has the same repository rename and release publication prerequisites.
+
+The archive contains these files directly at its root:
 
 ```text
-plugin.json              # Identifier: bloom
-mcp.json                 # Bloom MCP over Streamable HTTP
-skills/bloom/SKILL.md    # Canonical Skill
+plugin.json
+mcp.json
+skills/rainbrand/SKILL.md
 README.md
 CHANGELOG.md
 LICENSE
-assets/bloom-mcp-og.png
-assets/bloom-logo.png    # Bloom's existing 512×512 app icon
+assets/README.md
 ```
 
-Both JSON files declare the Agent Plugins `1.0.0` schemas. `mcp.json` defines
-one server named `bloom` at `https://mcp.trybloom.ai/mcp`. OAuth discovery and
-credential storage belong to the client; the package contains no credentials.
-The ZIP has these files directly at its root, with no enclosing directory.
+Both manifests declare the Agent Plugins `1.0.0` schemas. `mcp.json` defines
+one server named `rainbrand` with transport `streamable-http` and endpoint
+`https://mcp.rainbrand.com/mcp`. The package contains no credentials. Approved
+Rainbrand artwork is pending, so this draft includes no logo file or logo
+metadata; see [asset status](assets/README.md).
 
-The portable manifest includes complete OpenAI listing metadata under
-`extensions.com.openai.interface`: the display name, descriptions, developer
-name, category, capabilities, and website, support, privacy policy, and terms
-of service URLs. `websiteURL` is separate from the portable `homepage` field.
-`logo` and `composerIcon` reference `./assets/bloom-logo.png`, Bloom's existing
-512×512 app icon. The OpenAI extension also supplies five read-only review
-cases, three negative cases, and release notes for import into the submission
-dashboard. Enter reviewer credentials in that dashboard; they are not included
-in the package. See
-[OpenAI listing metadata](https://developers.openai.com/plugins/deploy/submission#listing-metadata).
-Clients that do not use the OpenAI extension still discover the same Skill and
-MCP configuration from their portable locations.
+## Connect Rainbrand
 
-### ChatGPT availability
+For interactive work, connect `https://mcp.rainbrand.com/mcp` in an MCP client
+that supports Streamable HTTP and OAuth. A plugin client reads that connection
+from `mcp.json`; a standalone Skill installation needs it configured separately.
+Complete Rainbrand sign-in, then let the client discover the live tools and
+their schemas. The live tool list determines what the connected account can use.
 
-ChatGPT currently marks imported plugins that declare MCP servers in `mcp.json`
-as **Desktop only**, including remote HTTPS servers. This portable ZIP includes
-that file, so importing it does not provide a ChatGPT web installation. See
-[OpenAI's import limitation](https://learn.chatgpt.com/docs/enterprise/plugin-management#desktop-only-plugins).
+For product information, support, and API integration guidance, use the
+[Rainbrand website](https://www.rainbrand.com/) and
+[FAQ](https://www.rainbrand.com/faq/). Before building an application or backend
+integration, obtain a current, verified Rainbrand API contract. Keep API keys
+in the application's secret store.
 
-To test Bloom's MCP tools on ChatGPT web, enable Developer mode under
-**Settings → Security and login**, then open **Plugins**, select the plus
-button, and connect `https://mcp.trybloom.ai/mcp`. Complete Bloom sign-in and test
-the connection in a new Work chat. This tests the server directly; the bundled
-Skill is supplied through the portable package separately. See
-[OpenAI's MCP quickstart](https://developers.openai.com/plugins/quickstart).
+## Provider compatibility
 
-## Connect or integrate Bloom
+The portable package is a draft for client testing. Successful local validation
+does not establish acceptance by a provider or publication in its directory.
 
-- For interactive agent work, follow the
-  [Bloom MCP quickstart](https://docs.trybloom.ai/mcp/getting-started).
-- For an application or backend, follow the
-  [Bloom API quickstart](https://docs.trybloom.ai/api).
-- For the complete documentation map, read
-  [Bloom's `llms.txt`](https://docs.trybloom.ai/llms.txt).
+| Provider | Current path | Remaining gate |
+| --- | --- | --- |
+| OpenAI | Import the portable ZIP and test the remote MCP connection in a supported client. The manifest includes listing copy and review cases. | Complete artwork, recording, ownership verification, reviewer access, client testing, and a new submission for the Rainbrand MCP origin. |
+| Claude | Upload the standalone Skill ZIP and configure the remote MCP connection separately. | The portable plugin ZIP is not currently compatible with Claude's native plugin upload or directory format. |
+| Cursor | Test the root Agent Plugins manifest from a local checkout. | After the repository rename, test installation from the public repository and submit through the marketplace. |
 
-For a standalone Skill installation, configure MCP using the quickstart. A
-plugin-capable client reads the connection from `mcp.json`. Interactive MCP
-clients authenticate through Bloom's OAuth flow; server applications keep API
-keys in their own secret store.
+OpenAI's build and submission requirements are documented in
+[Build plugins](https://developers.openai.com/plugins/build/plugins) and
+[Submit your plugin](https://developers.openai.com/plugins/deploy/submission).
+Its [review rules](https://developers.openai.com/plugins/deploy/app-review)
+require a new submission when the MCP server origin changes; this migration
+must not update the previous submission's origin. Test the actual target client;
+importing this ZIP does not establish ChatGPT web availability.
+
+Claude's native format requires `.claude-plugin/plugin.json` and `.mcp.json`
+with transport `http`. Those root paths conflict with the portable
+specification's requirement that client-specific files use a reverse-domain
+top-level directory. This repository does not add an undocumented adapter or a
+second maintained implementation. Reconcile those contracts before adding a
+native adapter. At that point, also check Claude's archive rules: the repository
+contains distribution ZIPs, and a native upload must not contain nested ZIPs.
+See [Claude plugin requirements](https://claude.com/docs/plugins/build), the
+[pre-submission checklist](https://claude.com/docs/plugins/pre-submission-checklist),
+and [directory publishing](https://claude.com/docs/directory/publish).
+
+Cursor recognizes the root `plugin.json`; a separate `.cursor-plugin/plugin.json`
+manifest is not required for this format. See
+[Cursor plugins](https://cursor.com/docs/reference/plugins) and
+[marketplace submission](https://cursor.com/marketplace/publish).
+
+## Review and publication checklist
+
+The manifest supplies five read-only positive cases and three negative cases
+for OpenAI review. Tool names match the server's raw `tools/list` names:
+`list_brands`, `get_brand`, `get_account`, `list_workspaces`, and `check_credits`.
+A client may qualify them with the server name, for example
+`mcp__rainbrand__list_brands`.
+
+Prepare a dedicated reviewer account with a sample Stripe brand. Run the
+positive cases in order in the same conversation: the first case supplies the
+Stripe Brand session ID for `get_brand`, and the workspace case supplies the
+personal `workspace_id` for `check_credits`. The personal-credit case expects
+only `check_credits`. The exchange-rate, Tokyo weather, and arithmetic cases
+must invoke no Rainbrand tools; the arithmetic answer is 42. Live connection,
+discovery, and calls to all five tools have passed. The brand retrieval check
+used another existing brand; the eight exact prompts still need to be exercised
+with a dedicated reviewer account containing Stripe. Put reviewer credentials
+and private instructions in the provider's review portal, never in this
+repository.
+
+Before public submission:
+
+- Tomas must rename the repository to `trybloomai/rainbrand-skills`, then publish
+  new v1.1.0 Skill and plugin assets. Preserve every earlier tag, release, and
+  asset unchanged.
+- Add the approved Rainbrand icon and its listing metadata, then rebuild both
+  archives. This is the only outstanding visual asset; the existing public icon
+  is not approved Rainbrand artwork.
+- Record and upload a Rainbrand walkthrough. The
+  [planned v1.1.0 recording](https://github.com/trybloomai/rainbrand-skills/releases/download/v1.1.0/rainbrand-plugin-walkthrough.mp4)
+  is **unpublished**, so the manifest omits `demo_recording_url`. Add its
+  verified URL and rebuild before OpenAI review.
+- If OpenAI issues a new ownership challenge, serve the exact plain-text token
+  from the portal at the eligible Rainbrand HTTPS origin. Do not reuse an old
+  challenge token.
+- Check public website, support, and legal pages for the completed Rainbrand
+  rollout. Reachable pages alone do not establish that launch is complete.
+- Complete each provider's client tests, review requirements, and submission
+  process. Provider review determines whether these brand and design workflows
+  are accepted; the portable format is not universal approval.
 
 ## Update or remove
 
 ```bash
-npx skills update bloom
-npx skills remove bloom
+npx skills update rainbrand
+npx skills remove rainbrand
 ```
 
-Add `--global` to update or remove a global installation.
+Add `--global` for a global installation. Public-source updates require the
+repository rename described above.
 
 ## Package and validate
 
-The canonical Skill remains `skills/bloom/SKILL.md`. Rebuild its existing upload
-archive with:
+The canonical source is `skills/rainbrand/SKILL.md`. Build both archives and
+validate them in this order:
 
 ```bash
 scripts/package-skill.sh
-```
-
-That script verifies that `dist/bloom.skill.zip` contains the same `SKILL.md`.
-Build the portable plugin archive with:
-
-```bash
 scripts/package-plugin.sh
-```
-
-Validate the checked-in plugin archive without rebuilding it:
-
-```bash
 scripts/validate-plugin.sh
 ```
 
-Pass a ZIP path to `scripts/validate-plugin.sh` to check another local copy
-against this checkout. These scripts run offline with Bash 3.2 or later,
-POSIX `awk`, `zip`, Info-ZIP `unzip` (including `-Z`), and standard shell utilities.
-No package manager or additional language runtime is required.
+Pass a ZIP path to `scripts/validate-plugin.sh` to validate another local copy
+against this checkout. Check submission readiness separately:
 
-The Bloom-specific validator parses JSON and checks field types, duplicate and
-unsupported fields, both exact `1.0.0` schema identifiers, matching plugin,
-Skill-directory, Skill-frontmatter, and MCP-server names, and the remote
-transport and endpoint. It requires `plugin.json`'s version to match the Skill's
-`metadata.version` and the latest numbered changelog release. It also validates
-the OpenAI listing and review metadata, including required URLs, icon paths, and
-test cases. Changes under **Unreleased** retain the current shared version until
-the next release.
-Any release that changes shipped plugin contents updates all three versions
-together.
+```bash
+scripts/validate-plugin.sh --submission
+```
 
-Archive validation checks ZIP integrity, the exact file list, regular file
-types, and every member byte-for-byte against its source. It also checks the
-existing Skill ZIP's structure and canonical contents. The plugin builder
-stages files with fixed modes and timestamps, so unchanged sources rebuild to
-the same bytes with the same `zip` version. It validates a temporary archive
-before replacing `dist/bloom.plugin.zip` and preserves the Skill ZIP.
+The draft package can pass ordinary validation while submission readiness
+fails for the missing approved artwork and recording metadata. Readiness
+validation does not replace the manual publication and provider checks above.
+
+The scripts run offline with Bash 3.2 or later, POSIX `awk`, `zip`, Info-ZIP
+`unzip` (including `-Z`), and standard shell utilities. They require no package
+manager or additional language runtime.
+
+Validation checks JSON types, duplicate and unsupported fields, schema
+identifiers, matching names, the exact MCP endpoint, and OpenAI metadata. The
+plugin version, Skill version, and latest numbered changelog release must agree.
+Archive checks cover integrity, exact members, regular file types, and
+byte-for-byte agreement with source files. Both builders fix timestamps and
+file modes so unchanged sources produce identical archives with the same ZIP
+tool version, including across time zones and umasks.
+
+For packaging changes, run the optional regression suite:
+
+```bash
+python3 scripts/test-validation.py
+```
+
+These tests exercise malformed metadata, unsafe or mismatched archives,
+submission gates, and reproducible builds. Python 3 is required only for this
+test suite, not for package building or validation.
 
 ## License
 

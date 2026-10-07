@@ -1,21 +1,21 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-  "name": "bloom",
-  "version": "1.0.6",
+  "name": "rainbrand",
+  "version": "1.1.0",
   "description": "The brand layer for agents.",
   "author": {
-    "name": "Bloom"
+    "name": "Rainbrand"
   },
-  "homepage": "https://docs.trybloom.ai/mcp/getting-started",
-  "repository": "https://github.com/trybloomai/bloom-skills",
+  "homepage": "https://www.rainbrand.com/",
+  "repository": "https://github.com/trybloomai/rainbrand-skills",
   "license": "MIT",
   "extensions": {
     "com.openai": {
       "interface": {
-        "displayName": "Bloom",
+        "displayName": "Rainbrand",
         "shortDescription": "The brand layer for agents.",
-        "longDescription": "Bloom is the brand layer for agents. It turns a brand's identity, guidance, and assets into shared context that agents and products can use and update as the brand evolves.\n\nConnect your Bloom account to find accessible brands, retrieve their current context, and inspect account, workspace, and credit information. Versioned Brand Skills provide structured profiles, written guidance, and asset references for recurring brand work across connected systems.\n\nBloom also supports creating and updating brand context, brand-aware image generation, and selected image, video, audio, and SVG models. Connected agents and products can apply the same brand context to their own work.",
-        "developerName": "Bloom",
+        "longDescription": "Rainbrand is the brand layer for agents. It turns a brand's identity, guidance, and assets into shared context that agents and products can use and update as the brand evolves.\n\nConnect your Rainbrand account to find accessible brands, retrieve their current context, and inspect account, workspace, and credit information. Versioned Brand Skills provide structured profiles, written guidance, and asset references for recurring brand work across connected systems.\n\nRainbrand also supports creating and updating brand context, brand-aware image generation, and selected image, video, audio, and SVG models. Connected agents and products can apply the same brand context to their own work.",
+        "developerName": "Rainbrand",
         "category": "Creativity",
         "capabilities": [
           "Brand context and Brand Skills",
@@ -25,66 +25,63 @@
           "Brand-aware image generation",
           "Selected image, video, audio, and SVG models"
         ],
-        "websiteURL": "https://www.trybloom.ai/",
-        "supportURL": "https://www.trybloom.ai/faq/",
-        "privacyPolicyURL": "https://www.trybloom.ai/privacy/",
-        "termsOfServiceURL": "https://www.trybloom.ai/terms/",
-        "logo": "./assets/bloom-logo.png",
-        "composerIcon": "./assets/bloom-logo.png"
+        "websiteURL": "https://www.rainbrand.com/",
+        "supportURL": "https://www.rainbrand.com/faq/",
+        "privacyPolicyURL": "https://www.rainbrand.com/privacy/",
+        "termsOfServiceURL": "https://www.rainbrand.com/terms/"
       },
       "review": {
         "test_cases": {
           "positive": [
             {
-              "description": "List the brands accessible to the connected Bloom account.",
-              "prompt": "Show me the brands I can access in Bloom.",
-              "tools_triggered": "bloom_list_brands",
+              "description": "List the brands accessible to the connected Rainbrand account.",
+              "prompt": "Show me the brands I can access in Rainbrand.",
+              "tools_triggered": "list_brands",
               "expected_behavior": "Returns accessible brands with their names, statuses, workspaces, and Brand session IDs."
             },
             {
-              "description": "Retrieve the current brand context for an existing Stripe brand.",
-              "prompt": "Get the current brand context for my Stripe brand in Bloom.",
-              "tools_triggered": "bloom_get_brand",
-              "expected_behavior": "Returns the accessible Stripe brand's current status, profile, root guidance, navigation, files, and version metadata."
+              "description": "Retrieve the current brand context for an existing Stripe brand, using its Brand session ID from the preceding brand-list case.",
+              "prompt": "Get the current brand context for my Stripe brand in Rainbrand.",
+              "tools_triggered": "get_brand",
+              "expected_behavior": "Uses the known Stripe Brand session ID to return the accessible brand's current status, profile, root guidance, navigation, files, and version metadata."
             },
             {
-              "description": "Identify the Bloom account connected to the conversation.",
-              "prompt": "Which Bloom account am I connected to?",
-              "tools_triggered": "bloom_get_account",
+              "description": "Identify the Rainbrand account connected to the conversation.",
+              "prompt": "Which Rainbrand account am I connected to?",
+              "tools_triggered": "get_account",
               "expected_behavior": "Returns the authenticated account's email address and name."
             },
             {
-              "description": "List the workspaces accessible to the connected Bloom account.",
-              "prompt": "Which Bloom workspaces can I access?",
-              "tools_triggered": "bloom_list_workspaces",
+              "description": "List the workspaces accessible to the connected Rainbrand account.",
+              "prompt": "Which Rainbrand workspaces can I access?",
+              "tools_triggered": "list_workspaces",
               "expected_behavior": "Returns the personal workspace first, followed by other accessible workspaces, with their IDs and names."
             },
             {
-              "description": "Check the remaining credits in the account's personal workspace.",
-              "prompt": "How many Bloom credits are left in my personal workspace?",
-              "tools_triggered": "bloom_check_credits",
-              "expected_behavior": "Calls bloom_check_credits and returns the workspace name, credit balance, and unlimited or paused status as applicable."
+              "description": "Check the remaining credits in the account's personal workspace, using its workspace ID from the preceding workspace-list case.",
+              "prompt": "How many Rainbrand credits are left in my personal workspace?",
+              "tools_triggered": "check_credits",
+              "expected_behavior": "Calls only check_credits with the known personal workspace ID and returns the workspace name, credit balance, and unlimited or paused status as applicable."
             }
           ],
           "negative": [
             {
-              "description": "Answer a currency exchange question without running any Bloom tools.",
+              "description": "Answer a currency exchange question without running any Rainbrand tools.",
               "prompt": "What is the current USD/EUR exchange rate?"
             },
             {
-              "description": "Answer a weather question without running any Bloom tools.",
+              "description": "Answer a weather question without running any Rainbrand tools.",
               "prompt": "What is the weather in Tokyo today?"
             },
             {
-              "description": "Answer a basic arithmetic question without running any Bloom tools.",
+              "description": "Answer a basic arithmetic question without running any Rainbrand tools.",
               "prompt": "What is 17 + 25?"
             }
           ]
-        },
-        "demo_recording_url": "https://github.com/trybloomai/bloom-skills/releases/download/v1.0.6/bloom-plugin-walkthrough.mp4"
+        }
       },
       "publication": {
-        "release_notes": "Updated submission review materials and walkthrough."
+        "release_notes": "Migrate the Skill and plugin to Rainbrand, connect the Rainbrand MCP endpoint, and align review cases with live tool names. Approved artwork and a new walkthrough remain prerequisites for submission."
       }
     }
   }

@@ -1,17 +1,24 @@
 #!/usr/bin/env bash
 
-# Shared Bloom package checks; sourced by the two entry points.
+# Shared Rainbrand source, archive, and deterministic packaging checks.
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+export LC_ALL=C
+export TZ=UTC
 plugin_files=(
   plugin.json
   mcp.json
-  skills/bloom/SKILL.md
+  skills/rainbrand/SKILL.md
   README.md
   CHANGELOG.md
   LICENSE
-  assets/bloom-mcp-og.png
-  assets/bloom-logo.png
+  assets/README.md
 )
+# A portable draft may omit artwork. Submission requires the approved icon
+# and both manifest references; neither a placeholder nor the prior icon ships.
+if [[ -e "$repo_root/assets/rainbrand-logo.png" ]]; then
+  plugin_files+=(assets/rainbrand-logo.png)
+fi
+skill_files=(rainbrand/SKILL.md)
 
 fail() {
   echo "Error: $*" >&2
@@ -43,8 +50,26 @@ validate_plugin_sources() {
   for file in "${plugin_files[@]}"; do
     [[ -f "$repo_root/$file" && ! -L "$repo_root/$file" ]] || fail "Missing regular source file: $file"
   done
-  for file in skills skills/bloom assets; do
+  for file in skills skills/rainbrand assets; do
     [[ -d "$repo_root/$file" && ! -L "$repo_root/$file" ]] || fail "Expected a regular source directory: $file"
+  done
+  for file in "$repo_root"/skills/*; do
+    [[ "$file" == "$repo_root/skills/rainbrand" ]] || fail "Expected only the Rainbrand Skill"
+  done
+  for file in "$repo_root"/assets/*; do
+    case "$file" in
+      "$repo_root/assets/README.md"|"$repo_root/assets/rainbrand-logo.png") ;;
+      *) fail "Unexpected asset: ${file##*/}" ;;
+    esac
+  done
+
+  # The active package must not carry prior presentation or connection data.
+  # The organization in the intended GitHub URL is an unchanged identifier.
+  for file in "${plugin_files[@]}"; do
+    awk '
+      { text = tolower($0) }
+      text ~ /(^|[^a-z0-9])bloom([^a-z0-9]|$)|trybloom[.]ai/ { exit 1 }
+    ' "$repo_root/$file" || fail "Prior branding or endpoint in package source: $file"
   done
 
   # Read only the canonical frontmatter, with version under metadata. Accept
@@ -59,21 +84,28 @@ validate_plugin_sources() {
     NR == 1 { if ($0 != "---") exit 1; next }
     /^---$/ { closed = 1; exit }
     /^name: / { name = scalar(substr($0, 7)); names++ }
+    /^description: / {
+      description = scalar(substr($0, 14)); descriptions++
+      if (description == "" || length(description) > 200 || description ~ /[<>]/) exit 1
+    }
+    /^license: / { if (scalar(substr($0, 10)) != "MIT") exit 1; licenses++ }
     /^metadata:$/ { metadata = 1; next }
     /^[^ ]/ { metadata = 0 }
     metadata && /^  version: / {
       version = scalar(substr($0, 12))
       versions++
     }
+    metadata && /^  author: / { if (scalar(substr($0, 11)) != "Rainbrand") exit 1; authors++ }
+    metadata && /^  url: / { if (scalar(substr($0, 8)) != "https://www.rainbrand.com/") exit 1; urls++ }
     END {
-      if (!closed || names != 1 || versions != 1 || name == "" || version == "") exit 1
+      if (!closed || names != 1 || versions != 1 || descriptions != 1 || licenses != 1 || authors != 1 || urls != 1 || name == "" || version == "") exit 1
       print name
       print version
     }
-  ' "$repo_root/skills/bloom/SKILL.md")" || fail "Invalid Skill name or metadata.version frontmatter"
+  ' "$repo_root/skills/rainbrand/SKILL.md")" || fail "Invalid Skill frontmatter (including the 200-character upload description limit)"
   skill_name="${skill_metadata%%$'\n'*}"
   skill_version="${skill_metadata#*$'\n'}"
-  [[ "$skill_name" == bloom ]] || fail "Skill name must match its directory: bloom"
+  [[ "$skill_name" == rainbrand ]] || fail "Skill name must match its directory: rainbrand"
   [[ "$skill_version" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]] || fail "Expected a stable semantic Skill version"
 
   release_version="$(awk '
@@ -87,7 +119,42 @@ validate_plugin_sources() {
   [[ "$release_version" == "$skill_version" ]] || fail "Latest changelog release must match Skill version $skill_version"
 
   awk -v kind=plugin -v expected_name="$skill_name" -v expected_version="$skill_version" \
+    -v has_artwork="$( [[ -f "$repo_root/assets/rainbrand-logo.png" ]] && echo 1 || echo 0 )" \
+    -v submission="${submission:-0}" \
     -f "$repo_root/scripts/validate-manifests.awk" "$repo_root/plugin.json"
   awk -v kind=mcp -v expected_name="$skill_name" \
     -f "$repo_root/scripts/validate-manifests.awk" "$repo_root/mcp.json"
+}
+
+build_deterministic_zip() {
+  local source_root="$1" stage_dir="$2" candidate="$3" file
+  shift 3
+  for file in "$@"; do
+    mkdir -p "$stage_dir/$(dirname "$file")"
+    cp "$source_root/$file" "$stage_dir/$file"
+    chmod 644 "$stage_dir/$file"
+    touch -t 198001010000 "$stage_dir/$file"
+  done
+  (
+    cd "$stage_dir"
+    zip -X -q "$candidate" "$@"
+  )
+}
+
+validate_zip_contents() {
+  local archive="$1" source_root="$2" validation_dir="$3" file
+  shift 3
+  [[ -f "$archive" && ! -L "$archive" ]] || fail "Missing regular archive: $archive"
+  unzip -tq "$archive" >/dev/null || fail "Invalid or corrupt ZIP: $archive"
+  printf '%s\n' "$@" | sort > "$validation_dir/expected"
+  unzip -Z1 "$archive" > "$validation_dir/entries"
+  sort "$validation_dir/entries" > "$validation_dir/actual"
+  cmp -s "$validation_dir/expected" "$validation_dir/actual" || \
+    fail "Archive must contain exactly the allowed files (no wrapper, duplicates, or extras): $archive"
+  validate_regular_zip_members "$archive" "$#"
+  # Stream only allowlisted members; never extract paths from an untrusted ZIP.
+  for file in "$@"; do
+    unzip -p "$archive" "$file" > "$validation_dir/member"
+    cmp -s "$source_root/$file" "$validation_dir/member" || fail "Archive differs from source: $file"
+  done
 }
