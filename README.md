@@ -22,18 +22,7 @@ From this checkout, install the Skill in the current project:
 npx skills add . --skill rainbrand
 ```
 
-The public repository is awaiting its rename to `trybloomai/rainbrand-skills`.
-The following commands become available **after the repository is renamed**:
-
-```bash
-npx skills add trybloomai/rainbrand-skills --skill rainbrand
-npx skills add trybloomai/rainbrand-skills --skill rainbrand --global
-npx skills use trybloomai/rainbrand-skills@rainbrand
-```
-
 Prefer a project installation so the guidance is reviewable with the project.
-Use `--global` deliberately for guidance across unrelated projects, or
-`skills use` for one session.
 
 ### Standalone Skill upload
 
@@ -41,21 +30,12 @@ The local [dist/rainbrand.skill.zip](dist/rainbrand.skill.zip) contains the
 canonical Skill as `rainbrand/SKILL.md`. Upload that archive through Claude's
 Skill upload flow.
 
-The public
-[v1.1.0 Skill download](https://github.com/trybloomai/rainbrand-skills/releases/download/v1.1.0/rainbrand.skill.zip)
-is available **only after the repository rename and publication of the new
-release assets**.
-
 ### Portable plugin
 
 Use this repository root as the plugin directory, or extract the local
 [dist/rainbrand.plugin.zip](dist/rainbrand.plugin.zip). Load it in a client
 that supports Agent Plugins 1.0 and Streamable HTTP, then follow the client's
 OAuth sign-in flow.
-
-The public
-[v1.1.0 plugin download](https://github.com/trybloomai/rainbrand-skills/releases/download/v1.1.0/rainbrand.plugin.zip)
-has the same repository rename and release publication prerequisites.
 
 The archive contains these files directly at its root:
 
@@ -98,7 +78,7 @@ does not establish acceptance by a provider or publication in its directory.
 | --- | --- | --- |
 | OpenAI | Import the portable ZIP and test the remote MCP connection in a supported client. The manifest includes listing copy and review cases. | Complete artwork, recording, ownership verification, reviewer access, client testing, and a new submission for the Rainbrand MCP origin. |
 | Claude | Upload the standalone Skill ZIP and configure the remote MCP connection separately. | The portable plugin ZIP is not currently compatible with Claude's native plugin upload or directory format. |
-| Cursor | Test the root Agent Plugins manifest from a local checkout. | After the repository rename, test installation from the public repository and submit through the marketplace. |
+| Cursor | Test the root Agent Plugins manifest from the existing public repository checkout. | Test installation from the public repository and submit its current URL through the marketplace portal. |
 
 OpenAI's build and submission requirements are documented in
 [Build plugins](https://developers.openai.com/plugins/build/plugins) and
@@ -146,16 +126,12 @@ repository.
 
 Before public submission:
 
-- Rename the repository to `trybloomai/rainbrand-skills`, then publish
-  new v1.1.0 Skill and plugin assets. Preserve every earlier tag, release, and
-  asset unchanged.
 - Add the approved Rainbrand icon and its listing metadata, then rebuild both
   archives. This is the only outstanding visual asset; the existing public icon
   is not approved Rainbrand artwork.
-- Record and upload a Rainbrand walkthrough. The
-  [planned v1.1.0 recording](https://github.com/trybloomai/rainbrand-skills/releases/download/v1.1.0/rainbrand-plugin-walkthrough.mp4)
-  is **unpublished**, so the manifest omits `demo_recording_url`. Add its
-  verified URL and rebuild before OpenAI review.
+- Record and upload a reviewer-accessible Rainbrand walkthrough. The manifest
+  omits `demo_recording_url` until that recording is available. Add its actual,
+  verified HTTPS URL and rebuild before OpenAI review.
 - If OpenAI issues a new ownership challenge, serve the exact plain-text token
   from the portal at the eligible Rainbrand HTTPS origin. Do not reuse an old
   challenge token.
@@ -165,6 +141,11 @@ Before public submission:
   process. Provider review determines whether these brand and design workflows
   are accepted; the portable format is not universal approval.
 
+A later repository rename is optional housekeeping, not a submission gate.
+Publishing downloadable release assets is also an optional distribution
+follow-up. Preserve every earlier tag, release, and asset unchanged. Use the
+current public repository URL in provider portals that require one.
+
 ## Update or remove
 
 ```bash
@@ -172,8 +153,7 @@ npx skills update rainbrand
 npx skills remove rainbrand
 ```
 
-Add `--global` for a global installation. Public-source updates require the
-repository rename described above.
+Add `--global` for a global installation.
 
 ## Package and validate
 

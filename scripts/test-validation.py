@@ -55,6 +55,18 @@ class PackageValidationTests(unittest.TestCase):
     def write_json(self, name, data):
         (self.root / name).write_text(json.dumps(data, indent=2) + '\n')
 
+    def test_optional_repository(self):
+        for repository in (None, 'https://github.com/trybloomai/rainbrand-skills'):
+            with self.subTest(repository=repository):
+                changed = copy.deepcopy(self.manifest)
+                changed.pop('repository', None)
+                if repository is not None:
+                    changed['repository'] = repository
+                self.write_json('plugin.json', changed)
+                self.run_script('package-skill.sh')
+                self.run_script('package-plugin.sh')
+                self.run_script('validate-plugin.sh')
+
     def test_manifest_rejections(self):
         changes = [
             ('version', '9.9.9'), ('repository', 'https://example.com/repository'),
@@ -123,8 +135,7 @@ class PackageValidationTests(unittest.TestCase):
         # Test manifest gates alone, without creating or claiming approved art.
         interface['composerIcon'] = './assets/rainbrand-logo.png'
         changed['extensions']['com.openai']['review']['demo_recording_url'] = (
-            'https://github.com/trybloomai/rainbrand-skills/releases/download/v'
-            + changed['version'] + '/rainbrand-plugin-walkthrough.mp4'
+            'https://video.example.com/rainbrand-plugin-walkthrough.mp4'
         )
         self.write_json('plugin.json', changed)
         command = ['awk', '-v', 'kind=plugin', '-v', 'expected_name=rainbrand',
@@ -132,6 +143,13 @@ class PackageValidationTests(unittest.TestCase):
                    '-v', 'submission=1', '-f', str(self.root / 'scripts/validate-manifests.awk'),
                    str(self.root / 'plugin.json')]
         self.assertEqual(subprocess.run(command, capture_output=True).returncode, 0)
+        for recording_url in ('', 'http://video.example.com/walkthrough.mp4',
+                              'https:///walkthrough.mp4', 'https://video.example.com/bad path',
+                              'https://user:password@video.example.com/walkthrough.mp4', None):
+            with self.subTest(recording_url=recording_url):
+                changed['extensions']['com.openai']['review']['demo_recording_url'] = recording_url
+                self.write_json('plugin.json', changed)
+                self.assertNotEqual(subprocess.run(command, capture_output=True).returncode, 0)
         del changed['extensions']['com.openai']['review']['demo_recording_url']
         self.write_json('plugin.json', changed)
         result = subprocess.run(command, capture_output=True, text=True)

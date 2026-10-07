@@ -20,8 +20,10 @@ Notable changes to the Rainbrand Skill and Agent Plugin. This project follows
   validation of source contents and metadata.
 - Separate draft package validation from submission readiness. Approved artwork
   and a new walkthrough are still required before OpenAI submission.
-- Document the repository rename and new release publication as manual gates,
-  along with provider testing and Claude's native plugin compatibility limits.
+- Support staged rollout with local install and archive paths, omitting optional
+  repository metadata and unpublished download links. A later repository rename
+  is optional housekeeping, not a submission gate.
+- Document provider testing and Claude's native plugin compatibility limits.
 
 ### Removed
 
@@ -30,8 +32,6 @@ Notable changes to the Rainbrand Skill and Agent Plugin. This project follows
 
 ## Earlier releases
 
-History through 1.0.6 remains in the
-[historical changelog](https://github.com/trybloomai/rainbrand-skills/blob/v1.0.6/CHANGELOG.md).
-That link becomes available after the repository rename. Earlier tags, releases,
-and their assets remain unchanged; 1.1.0 starts the Rainbrand distribution
-history.
+History through 1.0.6 remains in the changelog at the v1.0.6 tag. Earlier tags,
+releases, and their assets remain unchanged; 1.1.0 starts the Rainbrand
+distribution history.
