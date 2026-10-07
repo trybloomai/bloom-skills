@@ -16,7 +16,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parent.parent
 PLUGIN_MEMBERS = [
     'plugin.json', 'mcp.json', 'skills/rainbrand/SKILL.md', 'README.md',
-    'CHANGELOG.md', 'LICENSE', 'assets/README.md',
+    'CHANGELOG.md', 'LICENSE',
 ]
 
 

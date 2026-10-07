@@ -11,7 +11,6 @@ plugin_files=(
   README.md
   CHANGELOG.md
   LICENSE
-  assets/README.md
 )
 # A portable draft may omit artwork. Submission requires the approved icon
 # and both manifest references; neither a placeholder nor the prior icon ships.
@@ -50,18 +49,19 @@ validate_plugin_sources() {
   for file in "${plugin_files[@]}"; do
     [[ -f "$repo_root/$file" && ! -L "$repo_root/$file" ]] || fail "Missing regular source file: $file"
   done
-  for file in skills skills/rainbrand assets; do
+  for file in skills skills/rainbrand; do
     [[ -d "$repo_root/$file" && ! -L "$repo_root/$file" ]] || fail "Expected a regular source directory: $file"
   done
   for file in "$repo_root"/skills/*; do
     [[ "$file" == "$repo_root/skills/rainbrand" ]] || fail "Expected only the Rainbrand Skill"
   done
-  for file in "$repo_root"/assets/*; do
-    case "$file" in
-      "$repo_root/assets/README.md"|"$repo_root/assets/rainbrand-logo.png") ;;
-      *) fail "Unexpected asset: ${file##*/}" ;;
-    esac
-  done
+  if [[ -e "$repo_root/assets" || -L "$repo_root/assets" ]]; then
+    [[ -d "$repo_root/assets" && ! -L "$repo_root/assets" ]] || fail "Expected a regular source directory: assets"
+    for file in "$repo_root"/assets/*; do
+      [[ -e "$file" ]] || continue
+      [[ "$file" == "$repo_root/assets/rainbrand-logo.png" ]] || fail "Unexpected asset: ${file##*/}"
+    done
+  fi
 
   # The active package must not carry prior presentation or connection data.
   # The organization in the intended GitHub URL is an unchanged identifier.

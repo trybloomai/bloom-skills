@@ -46,14 +46,13 @@ skills/rainbrand/SKILL.md
 README.md
 CHANGELOG.md
 LICENSE
-assets/README.md
 ```
 
 Both manifests declare the Agent Plugins `1.0.0` schemas. `mcp.json` defines
 one server named `rainbrand` with transport `streamable-http` and endpoint
 `https://mcp.rainbrand.com/mcp`. The package contains no credentials. Approved
 Rainbrand artwork is pending, so this draft includes no logo file or logo
-metadata; see [asset status](assets/README.md).
+metadata.
 
 ## Connect Rainbrand
 
