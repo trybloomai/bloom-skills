@@ -5,6 +5,14 @@ Notable changes to the Rainbrand Skill and Agent Plugin. This project follows
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-10-07
+
+### Changed
+
+- Remove the placeholder asset README and allow the assets directory to remain absent until approved artwork is added, retaining validation for `assets/rainbrand-logo.png`.
+- Restore the Skill's original documentation links and contract guidance with Rainbrand domains.
+- Rebuild both distribution archives.
+
 ## [1.1.0] - 2026-10-07
 
 ### Changed
