@@ -81,7 +81,7 @@
         }
       },
       "publication": {
-        "release_notes": "Migrate the Skill and plugin to Rainbrand, connect the Rainbrand MCP endpoint, and align review cases with live tool names. Approved artwork and a new walkthrough remain prerequisites for submission."
+        "release_notes": "Updated the plugin for Rainbrand."
       }
     }
   }

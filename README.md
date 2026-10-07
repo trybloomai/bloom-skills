@@ -23,7 +23,7 @@ npx skills add . --skill rainbrand
 ```
 
 The public repository is awaiting its rename to `trybloomai/rainbrand-skills`.
-The following commands become available **after Tomas renames the repository**:
+The following commands become available **after the repository is renamed**:
 
 ```bash
 npx skills add trybloomai/rainbrand-skills --skill rainbrand
@@ -146,7 +146,7 @@ repository.
 
 Before public submission:
 
-- Tomas must rename the repository to `trybloomai/rainbrand-skills`, then publish
+- Rename the repository to `trybloomai/rainbrand-skills`, then publish
   new v1.1.0 Skill and plugin assets. Preserve every earlier tag, release, and
   asset unchanged.
 - Add the approved Rainbrand icon and its listing metadata, then rebuild both
