@@ -5,6 +5,12 @@ Notable changes to the Rainbrand Skill and Agent Plugin. This project follows
 
 ## [Unreleased]
 
+## [1.1.2] - 2026-10-08
+
+### Changed
+
+- Add the Rainbrand icon and review walkthrough.
+
 ## [1.1.1] - 2026-10-07
 
 ### Changed

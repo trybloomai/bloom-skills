@@ -14,6 +14,10 @@ import zipfile
 
 
 ROOT = Path(__file__).resolve().parent.parent
+REVIEW_RECORDING_URL = (
+    'https://github.com/trybloomai/bloom-skills/releases/download/v1.1.2/'
+    'rainbrand-review-walkthrough-v1.1.2.mp4'
+)
 PLUGIN_MEMBERS = [
     'plugin.json', 'mcp.json', 'skills/rainbrand/SKILL.md', 'README.md',
     'CHANGELOG.md', 'LICENSE',
@@ -134,18 +138,19 @@ class PackageValidationTests(unittest.TestCase):
         self.run_script('package-skill.sh', succeeds=False)
         # Test manifest gates alone, without creating or claiming approved art.
         interface['composerIcon'] = './assets/rainbrand-logo.png'
-        changed['extensions']['com.openai']['review']['demo_recording_url'] = (
-            'https://video.example.com/rainbrand-plugin-walkthrough.mp4'
-        )
+        changed['extensions']['com.openai']['review']['demo_recording_url'] = REVIEW_RECORDING_URL
         self.write_json('plugin.json', changed)
         command = ['awk', '-v', 'kind=plugin', '-v', 'expected_name=rainbrand',
                    '-v', 'expected_version=' + changed['version'], '-v', 'has_artwork=1',
+                   '-v', 'allowed_legacy_url=' + REVIEW_RECORDING_URL,
                    '-v', 'submission=1', '-f', str(self.root / 'scripts/validate-manifests.awk'),
                    str(self.root / 'plugin.json')]
         self.assertEqual(subprocess.run(command, capture_output=True).returncode, 0)
         for recording_url in ('', 'http://video.example.com/walkthrough.mp4',
                               'https:///walkthrough.mp4', 'https://video.example.com/bad path',
-                              'https://user:password@video.example.com/walkthrough.mp4', None):
+                              'https://user:password@video.example.com/walkthrough.mp4',
+                              REVIEW_RECORDING_URL.replace('rainbrand-review-walkthrough-v1.1.2.mp4',
+                                                           'other.mp4'), None):
             with self.subTest(recording_url=recording_url):
                 changed['extensions']['com.openai']['review']['demo_recording_url'] = recording_url
                 self.write_json('plugin.json', changed)
