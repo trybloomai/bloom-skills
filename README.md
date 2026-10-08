@@ -42,6 +42,7 @@ The archive contains these files directly at its root:
 ```text
 plugin.json
 mcp.json
+assets/rainbrand-logo.png
 skills/rainbrand/SKILL.md
 README.md
 CHANGELOG.md
@@ -50,9 +51,9 @@ LICENSE
 
 Both manifests declare the Agent Plugins `1.0.0` schemas. `mcp.json` defines
 one server named `rainbrand` with transport `streamable-http` and endpoint
-`https://mcp.rainbrand.com/mcp`. The package contains no credentials. Approved
-Rainbrand artwork is pending, so this draft includes no logo file or logo
-metadata.
+`https://mcp.rainbrand.com/mcp`. The package contains no credentials.
+`assets/rainbrand-logo.png` is the approved temporary white Rainbrand R on
+black, used for both the OpenAI listing logo and composer icon.
 
 ## Connect Rainbrand
 
@@ -117,20 +118,16 @@ Stripe Brand session ID for `get_brand`, and the workspace case supplies the
 personal `workspace_id` for `check_credits`. The personal-credit case expects
 only `check_credits`. The exchange-rate, Tokyo weather, and arithmetic cases
 must invoke no Rainbrand tools; the arithmetic answer is 42. Live connection,
-discovery, and calls to all five tools have passed. The brand retrieval check
-used another existing brand; the eight exact prompts still need to be exercised
-with a dedicated reviewer account containing Stripe. Put reviewer credentials
-and private instructions in the provider's review portal, never in this
-repository.
+discovery, and calls to all five tools have passed. The walkthrough exercises
+all eight exact prompts with the dedicated reviewer account and Stripe brand.
+Put reviewer credentials and private instructions in the provider's review
+portal, never in this repository.
 
 Before public submission:
 
-- Add the approved Rainbrand icon and its listing metadata, then rebuild both
-  archives. This is the only outstanding visual asset; the existing public icon
-  is not approved Rainbrand artwork.
-- Record and upload a reviewer-accessible Rainbrand walkthrough. The manifest
-  omits `demo_recording_url` until that recording is available. Add its actual,
-  verified HTTPS URL and rebuild before OpenAI review.
+- The manifest includes `demo_recording_url` pointing to the
+  [Rainbrand walkthrough](https://github.com/trybloomai/bloom-skills/releases/download/v1.1.2/rainbrand-review-walkthrough-v1.1.2.mp4),
+  published with the release.
 - If OpenAI issues a new ownership challenge, serve the exact plain-text token
   from the portal at the eligible Rainbrand HTTPS origin. Do not reuse an old
   challenge token.
@@ -141,9 +138,9 @@ Before public submission:
   are accepted; the portable format is not universal approval.
 
 A later repository rename is optional housekeeping, not a submission gate.
-Publishing downloadable release assets is also an optional distribution
-follow-up. Preserve every earlier tag, release, and asset unchanged. Use the
-current public repository URL in provider portals that require one.
+Release v1.1.2 includes both distribution ZIPs and the review walkthrough.
+Preserve every earlier tag, release, and asset unchanged. Use the current public
+repository URL in provider portals that require one.
 
 ## Update or remove
 

@@ -4,6 +4,7 @@
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 export LC_ALL=C
 export TZ=UTC
+review_recording_url="https://github.com/trybloomai/bloom-skills/releases/download/v1.1.2/rainbrand-review-walkthrough-v1.1.2.mp4"
 plugin_files=(
   plugin.json
   mcp.json
@@ -64,10 +65,16 @@ validate_plugin_sources() {
   fi
 
   # The active package must not carry prior presentation or connection data.
-  # The organization in the intended GitHub URL is an unchanged identifier.
+  # The review recording stays beside the existing distribution until the
+  # repository is renamed, so allow only that exact legacy repository URL.
   for file in "${plugin_files[@]}"; do
-    awk '
-      { text = tolower($0) }
+    awk -v allowed_url="$review_recording_url" '
+      {
+        text = tolower($0)
+        allowed = tolower(allowed_url)
+        while ((start = index(text, allowed)) > 0)
+          text = substr(text, 1, start - 1) substr(text, start + length(allowed))
+      }
       text ~ /(^|[^a-z0-9])bloom([^a-z0-9]|$)|trybloom[.]ai/ { exit 1 }
     ' "$repo_root/$file" || fail "Prior branding or endpoint in package source: $file"
   done
@@ -120,6 +127,7 @@ validate_plugin_sources() {
 
   awk -v kind=plugin -v expected_name="$skill_name" -v expected_version="$skill_version" \
     -v has_artwork="$( [[ -f "$repo_root/assets/rainbrand-logo.png" ]] && echo 1 || echo 0 )" \
+    -v allowed_legacy_url="$review_recording_url" \
     -v submission="${submission:-0}" \
     -f "$repo_root/scripts/validate-manifests.awk" "$repo_root/plugin.json"
   awk -v kind=mcp -v expected_name="$skill_name" \

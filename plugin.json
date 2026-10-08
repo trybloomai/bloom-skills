@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "rainbrand",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "The brand layer for agents.",
   "author": {
     "name": "Rainbrand"
@@ -27,7 +27,9 @@
         "websiteURL": "https://www.rainbrand.com/",
         "supportURL": "https://www.rainbrand.com/faq/",
         "privacyPolicyURL": "https://www.rainbrand.com/privacy/",
-        "termsOfServiceURL": "https://www.rainbrand.com/terms/"
+        "termsOfServiceURL": "https://www.rainbrand.com/terms/",
+        "logo": "./assets/rainbrand-logo.png",
+        "composerIcon": "./assets/rainbrand-logo.png"
       },
       "review": {
         "test_cases": {
@@ -77,10 +79,11 @@
               "prompt": "What is 17 + 25?"
             }
           ]
-        }
+        },
+        "demo_recording_url": "https://github.com/trybloomai/bloom-skills/releases/download/v1.1.2/rainbrand-review-walkthrough-v1.1.2.mp4"
       },
       "publication": {
-        "release_notes": "Asset cleanup and Skill documentation updates."
+        "release_notes": "Updates Rainbrand submission assets."
       }
     }
   }

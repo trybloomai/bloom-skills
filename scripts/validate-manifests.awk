@@ -162,6 +162,7 @@ END {
     # presentation or service URLs from the source-level text check.
     for (node in values) {
         text = tolower(values[node])
+        if (text == tolower(allowed_legacy_url)) continue
         if (text ~ /(^|[^a-z0-9])bloom([^a-z0-9]|$)|trybloom[.]ai/)
             abort("Prior branding or endpoint in JSON string")
     }
